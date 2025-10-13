@@ -35,9 +35,6 @@ jobs:
       - name: Build Next.js site
         run: npm run build
 
-      - name: Disable Jekyll
-        run: touch out/.nojekyll
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
