@@ -1,15 +1,11 @@
 import type { NextConfig } from "next";
-const isGH = process.env.GITHUB_ACTIONS === "true";
-const repo = "homepage";
+const isProd = process.env.NODE_ENV === "production";
+const repo = "homie-ai";
 
 const nextConfig: NextConfig = {
   output: "export",
-  trailingSlash: true,
-  images: {
-    unoptimized: true,
-  },
-  basePath: isGH ? `/${repo}` : "",
-  assetPrefix: isGH ? `/${repo}/` : "",
+  assetPrefix: isProd ? `/${repo}/` : "",
+  basePath: isProd ? `/${repo}` : "",
 };
 
 export default nextConfig;
