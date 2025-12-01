@@ -81,9 +81,13 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
-        <div className="inline-flex items-center px-4 py-2 rounded-full bg-sky-50 text-sky-700 text-sm font-medium mb-8 animate-fade-in-up">
-          <span className="flex h-2 w-2 rounded-full bg-sky-500 mr-2"></span>
+      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center relative overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full overflow-hidden pointer-events-none -z-10">
+          <div className="absolute top-20 left-1/4 w-72 h-72 bg-sky-200/30 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-blue-200/30 rounded-full blur-3xl"></div>
+        </div>
+        <div className="inline-flex items-center px-4 py-2 rounded-full bg-sky-50 text-sky-700 text-sm font-medium mb-8 animate-fade-in-up border border-sky-100">
+          <span className="flex h-2 w-2 rounded-full bg-sky-500 mr-2 animate-pulse"></span>
           AI Schedule Team
         </div>
         <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-slate-900 mb-6 max-w-4xl mx-auto leading-tight">
@@ -102,18 +106,22 @@ export default function Home() {
       </section>
 
       {/* Problem Section */}
-      <section className="py-20 bg-slate-50">
+      <section className="py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">{t.problem.title}</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+              {t.problem.title}
+            </h2>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-12 gap-6">
             {t.problem.items.map((item, index) => (
               <div
                 key={index}
-                className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-slate-100"
+                className={`bg-white p-8 rounded-3xl shadow-sm hover:shadow-lg transition-all duration-300 border border-slate-100 group ${
+                  index < 2 ? "md:col-span-6" : "md:col-span-4"
+                }`}
               >
-                <div className="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center mb-6">
+                <div className="w-12 h-12 bg-red-50 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                   <X className="w-6 h-6 text-red-500" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3">{item.title}</h3>
@@ -125,67 +133,74 @@ export default function Home() {
       </section>
 
       {/* Solution Section */}
-      <section className="py-20 bg-white overflow-hidden">
+      <section className="py-24 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+          <div className="lg:grid lg:grid-cols-2 lg:gap-20 items-center">
             <div className="mb-12 lg:mb-0">
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+              <div className="inline-flex items-center px-3 py-1 rounded-full bg-green-50 text-green-700 text-sm font-medium mb-6 border border-green-100">
+                <CheckCircle2 className="w-4 h-4 mr-2" />
+                Smart Solution
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6 leading-tight">
                 {t.solution.title}
               </h2>
               <p className="text-xl text-slate-600 mb-8">{t.solution.subtitle}</p>
               <div className="space-y-6">
                 {t.solution.items.map((item, index) => (
-                  <div key={index} className="flex items-start">
-                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-green-100 flex items-center justify-center mt-1">
-                      <CheckCircle2 className="w-4 h-4 text-green-600" />
+                  <div
+                    key={index}
+                    className="flex items-start p-4 rounded-2xl hover:bg-slate-50 transition-colors duration-300"
+                  >
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-green-100 flex items-center justify-center mt-1">
+                      <CheckCircle2 className="w-5 h-5 text-green-600" />
                     </div>
                     <div className="ml-4">
-                      <h4 className="text-lg font-semibold text-slate-900">{item.title}</h4>
+                      <h4 className="text-lg font-bold text-slate-900 mb-1">{item.title}</h4>
                       <p className="text-slate-600">{item.desc}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-tr from-sky-100 to-blue-50 rounded-3xl transform rotate-3"></div>
-              <div className="relative bg-white p-8 rounded-3xl shadow-xl border border-slate-100">
-                <div className="space-y-4">
+            <div className="relative group">
+              <div className="absolute inset-0 bg-gradient-to-tr from-sky-200 to-blue-100 rounded-[2.5rem] transform rotate-3 group-hover:rotate-2 transition-transform duration-500"></div>
+              <div className="relative bg-white p-8 rounded-[2rem] shadow-2xl border border-slate-100 backdrop-blur-xl">
+                <div className="space-y-6">
                   {/* Mock UI Elements */}
-                  <div className="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-100">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                        <Calendar className="w-5 h-5 text-blue-600" />
+                  <div className="flex items-center justify-between p-5 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                    <div className="flex items-center space-x-4">
+                      <div className="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center">
+                        <Calendar className="w-6 h-6 text-blue-600" />
                       </div>
                       <div>
-                        <div className="h-2.5 w-24 bg-slate-200 rounded mb-2"></div>
-                        <div className="h-2 w-16 bg-slate-100 rounded"></div>
+                        <div className="h-3 w-32 bg-slate-200 rounded-full mb-2"></div>
+                        <div className="h-2 w-20 bg-slate-100 rounded-full"></div>
                       </div>
                     </div>
-                    <div className="h-8 w-20 bg-white rounded-lg border border-slate-200"></div>
+                    <div className="h-10 w-24 bg-slate-50 rounded-xl border border-slate-100"></div>
                   </div>
-                  <div className="flex items-center justify-between p-4 bg-sky-50 rounded-xl border border-sky-100">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 bg-sky-100 rounded-full flex items-center justify-center">
-                        <Zap className="w-5 h-5 text-sky-600" />
+                  <div className="flex items-center justify-between p-5 bg-sky-50 rounded-2xl border border-sky-100 shadow-sm scale-105 transform transition-transform">
+                    <div className="flex items-center space-x-4">
+                      <div className="w-12 h-12 bg-sky-100 rounded-2xl flex items-center justify-center">
+                        <Zap className="w-6 h-6 text-sky-600" />
                       </div>
                       <div>
-                        <div className="h-2.5 w-32 bg-sky-200 rounded mb-2"></div>
-                        <div className="h-2 w-20 bg-sky-100 rounded"></div>
+                        <div className="h-3 w-40 bg-sky-200 rounded-full mb-2"></div>
+                        <div className="h-2 w-24 bg-sky-100 rounded-full"></div>
                       </div>
                     </div>
-                    <div className="h-8 w-8 bg-white rounded-full flex items-center justify-center text-sky-600">
-                      <RefreshCw className="w-4 h-4" />
+                    <div className="h-10 w-10 bg-white rounded-xl flex items-center justify-center text-sky-600 shadow-sm">
+                      <RefreshCw className="w-5 h-5" />
                     </div>
                   </div>
-                  <div className="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-100 opacity-60">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center">
-                        <Clock className="w-5 h-5 text-slate-400" />
+                  <div className="flex items-center justify-between p-5 bg-white rounded-2xl border border-slate-100 shadow-sm opacity-60">
+                    <div className="flex items-center space-x-4">
+                      <div className="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center">
+                        <Clock className="w-6 h-6 text-slate-400" />
                       </div>
                       <div>
-                        <div className="h-2.5 w-28 bg-slate-200 rounded mb-2"></div>
-                        <div className="h-2 w-12 bg-slate-100 rounded"></div>
+                        <div className="h-3 w-36 bg-slate-200 rounded-full mb-2"></div>
+                        <div className="h-2 w-16 bg-slate-100 rounded-full"></div>
                       </div>
                     </div>
                   </div>
@@ -209,7 +224,7 @@ export default function Home() {
             <Zap className="w-4 h-4 mr-2" />
             Dynamic Intelligence
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">
             {t.dynamicScheduling.title}
           </h2>
           <p className="text-xl text-slate-400 mb-16 max-w-3xl mx-auto leading-relaxed">
@@ -238,7 +253,7 @@ export default function Home() {
 
           <div className="inline-block p-[1px] rounded-full bg-gradient-to-r from-sky-500 to-blue-600">
             <div className="px-8 py-4 bg-slate-900 rounded-full">
-              <p className="text-xl md:text-2xl font-medium bg-gradient-to-r from-sky-400 to-blue-400 bg-clip-text text-transparent">
+              <p className="text-xl font-medium bg-gradient-to-r from-sky-400 to-blue-400 bg-clip-text text-transparent">
                 {t.dynamicScheduling.footer}
               </p>
             </div>
@@ -247,21 +262,70 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-sky-50">
+      <section className="py-24 bg-sky-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-slate-900">{t.features.title}</h2>
+          <div className="text-center mb-20">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900">{t.features.title}</h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="space-y-24">
             {t.features.items.map((item, index) => (
-              <div key={index} className="bg-white p-8 rounded-2xl shadow-sm">
-                <div className="w-14 h-14 bg-sky-100 rounded-2xl flex items-center justify-center mb-6">
-                  {index === 0 && <Brain className="w-7 h-7 text-sky-600" />}
-                  {index === 1 && <MessageCircle className="w-7 h-7 text-sky-600" />}
-                  {index === 2 && <BarChart3 className="w-7 h-7 text-sky-600" />}
+              <div
+                key={index}
+                className={`flex flex-col ${
+                  index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+                } items-center gap-12 lg:gap-20`}
+              >
+                <div className="flex-1 w-full">
+                  <div className="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100 transform hover:scale-[1.02] transition-transform duration-500">
+                    <div className="aspect-video bg-slate-50 rounded-2xl flex items-center justify-center overflow-hidden relative">
+                      <div className="absolute inset-0 bg-gradient-to-br from-sky-50 to-blue-50 opacity-50"></div>
+                      {index === 0 && (
+                        <div className="grid grid-cols-3 gap-4 p-8 w-full opacity-80">
+                          {[1, 2, 3].map((i) => (
+                            <div
+                              key={i}
+                              className="h-32 bg-white rounded-xl shadow-sm border border-slate-100 animate-pulse"
+                              style={{ animationDelay: `${i * 200}ms` }}
+                            ></div>
+                          ))}
+                        </div>
+                      )}
+                      {index === 1 && (
+                        <div className="flex flex-col gap-4 w-3/4">
+                          <div className="bg-white p-4 rounded-xl rounded-tl-none shadow-sm border border-slate-100 self-start">
+                            <div className="h-2 w-24 bg-slate-200 rounded mb-2"></div>
+                            <div className="h-2 w-32 bg-slate-100 rounded"></div>
+                          </div>
+                          <div className="bg-sky-500 p-4 rounded-xl rounded-tr-none shadow-sm self-end text-white">
+                            <div className="h-2 w-28 bg-white/40 rounded mb-2"></div>
+                            <div className="h-2 w-20 bg-white/20 rounded"></div>
+                          </div>
+                        </div>
+                      )}
+                      {index === 2 && (
+                        <div className="w-full px-12">
+                          <div className="flex items-end gap-2 h-32">
+                            <div className="w-1/4 bg-sky-200 rounded-t-lg h-[40%]"></div>
+                            <div className="w-1/4 bg-sky-300 rounded-t-lg h-[70%]"></div>
+                            <div className="w-1/4 bg-sky-400 rounded-t-lg h-[50%]"></div>
+                            <div className="w-1/4 bg-sky-500 rounded-t-lg h-[90%]"></div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-4">{item.title}</h3>
-                <p className="text-slate-600 leading-relaxed">{item.desc}</p>
+                <div className="flex-1 text-center lg:text-left">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-sky-100 text-sky-600 mb-6">
+                    {index === 0 && <Brain className="w-8 h-8" />}
+                    {index === 1 && <MessageCircle className="w-8 h-8" />}
+                    {index === 2 && <BarChart3 className="w-8 h-8" />}
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-6">
+                    {item.title}
+                  </h3>
+                  <p className="text-lg text-slate-600 leading-relaxed">{item.desc}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -269,28 +333,45 @@ export default function Home() {
       </section>
 
       {/* Companions Section */}
-      <section className="py-20 bg-white">
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-slate-900">{t.companions.title}</h2>
+          <div className="text-center mb-20">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+              {t.companions.title}
+            </h2>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="flex flex-wrap justify-center gap-8">
             {t.companions.items.map((companion, index) => (
               <div
                 key={index}
-                className="group relative bg-white p-8 rounded-2xl border border-slate-100 hover:border-sky-200 hover:shadow-lg transition-all"
+                className="group relative w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1.5rem)] bg-white rounded-3xl border border-slate-100 hover:border-sky-200 hover:shadow-xl transition-all duration-300 overflow-hidden"
               >
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-sky-400 to-blue-500 rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <div className="mb-4">
-                  <h3 className="text-2xl font-bold text-slate-900">{companion.name}</h3>
-                  <p className="text-sm font-medium text-sky-600 uppercase tracking-wide">
+                <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-sky-400 to-blue-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+                <div className="p-8">
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center text-2xl font-bold text-sky-600 group-hover:bg-sky-50 transition-colors">
+                      {companion.name[0]}
+                    </div>
+                    <span className="px-4 py-1 rounded-full bg-slate-50 text-slate-600 text-xs font-bold uppercase tracking-wider group-hover:bg-sky-50 group-hover:text-sky-600 transition-colors">
+                      AI Companion
+                    </span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-900 mb-2">{companion.name}</h3>
+                  <p className="text-sm font-bold text-sky-600 uppercase tracking-wide mb-4">
                     {companion.role}
                   </p>
+                  <p className="text-slate-600 mb-8 text-sm leading-relaxed min-h-[80px]">
+                    {companion.desc}
+                  </p>
+                  <div className="relative p-6 bg-slate-50 rounded-2xl group-hover:bg-sky-50/50 transition-colors">
+                    <div className="absolute top-4 left-4 text-sky-200 text-4xl font-serif leading-none">
+                      &quot;
+                    </div>
+                    <p className="relative z-10 text-slate-600 italic text-sm text-center pt-2">
+                      {companion.quote}
+                    </p>
+                  </div>
                 </div>
-                <p className="text-slate-600 mb-6 text-sm leading-relaxed">{companion.desc}</p>
-                <blockquote className="pl-4 border-l-2 border-sky-200 italic text-slate-500 text-sm">
-                  &quot;{companion.quote}&quot;
-                </blockquote>
               </div>
             ))}
           </div>
