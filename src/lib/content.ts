@@ -1,4 +1,6 @@
-export const content = {
+import { Content } from "@/types/content";
+
+export const content: Record<"en" | "zh-tw", Content> = {
   en: {
     nav: {
       cta: "Join Early Access",
