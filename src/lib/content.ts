@@ -197,12 +197,7 @@ export const content: Record<"en" | "zh-tw", Content> = {
           price: "$0",
           period: "/月",
           desc: "適合剛開始使用的個人用戶。",
-          features: [
-            "基礎 AI 排程",
-            "1 位 AI 同伴 (Kai)",
-            "Google 日曆整合",
-            "每日摘要",
-          ],
+          features: ["基礎 AI 排程", "1 位 AI 同伴 (Kai)", "Google 日曆整合", "每日摘要"],
           cta: "立即開始",
         },
         {
