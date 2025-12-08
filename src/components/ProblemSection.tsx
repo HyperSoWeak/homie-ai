@@ -7,7 +7,7 @@ interface ProblemSectionProps {
 
 export default function ProblemSection({ t }: ProblemSectionProps) {
   return (
-    <section className="py-24 bg-slate-50 dark:bg-slate-900/50">
+    <section className="py-24 bg-white dark:bg-slate-900/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6">
@@ -18,7 +18,7 @@ export default function ProblemSection({ t }: ProblemSectionProps) {
           {t.problem.items.map((item, index) => (
             <div
               key={index}
-              className={`bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-sm hover:shadow-lg transition-all duration-300 border border-slate-100 dark:border-slate-700 group ${
+              className={`bg-slate-50 dark:bg-slate-800 p-8 rounded-3xl shadow-sm hover:shadow-lg transition-all duration-300 border border-slate-100 dark:border-slate-700 group ${
                 index < 2 ? "md:col-span-6" : "md:col-span-4"
               }`}
             >

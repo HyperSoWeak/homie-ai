@@ -7,7 +7,7 @@ interface SolutionSectionProps {
 
 export default function SolutionSection({ t }: SolutionSectionProps) {
   return (
-    <section className="py-24 bg-white dark:bg-slate-950 overflow-hidden">
+    <section className="py-24 bg-slate-50 dark:bg-slate-950 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="lg:grid lg:grid-cols-2 lg:gap-20 items-center">
           <div className="mb-12 lg:mb-0">
@@ -23,7 +23,7 @@ export default function SolutionSection({ t }: SolutionSectionProps) {
               {t.solution.items.map((item, index) => (
                 <div
                   key={index}
-                  className="flex items-start p-4 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors duration-300"
+                  className="flex items-start p-4 rounded-2xl hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors duration-300"
                 >
                   <div className="flex-shrink-0 w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/50 flex items-center justify-center mt-1">
                     <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400" />
