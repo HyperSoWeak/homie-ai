@@ -34,8 +34,18 @@ export default function HeroSection({ t }: HeroSectionProps) {
 
     setStatus("loading");
     try {
-      // Mock API call for now
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      const response = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to join waitlist");
+      }
+
       setStatus("success");
       setEmail("");
       setTimeout(() => setStatus("idle"), 5000);
