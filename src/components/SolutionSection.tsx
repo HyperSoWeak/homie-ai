@@ -4,7 +4,7 @@ import { Content } from "@/types/content";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import clsx from "clsx";
-import { Clock, Smartphone } from "lucide-react";
+import { Clock } from "lucide-react";
 
 interface SolutionSectionProps {
   t: Content;
@@ -58,7 +58,8 @@ export default function SolutionSection({ t }: SolutionSectionProps) {
     offset: ["start start", "end end"],
   });
 
-  const mobileX = useTransform(mobileScrollY, [0, 1], ["0%", "-350%"]);
+  // Calculate horizontal scroll distance: 4 steps * (280px card + 16px gap) = 1184px
+  const mobileX = useTransform(mobileScrollY, [0, 1], ["0px", "-1184px"]);
 
   useEffect(() => {
     return mobileScrollY.on("change", (latest) => {
@@ -90,7 +91,7 @@ export default function SolutionSection({ t }: SolutionSectionProps) {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight"
+            className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight"
           >
             {t.solution.title}
           </motion.h2>
@@ -99,7 +100,7 @@ export default function SolutionSection({ t }: SolutionSectionProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto leading-relaxed"
+            className="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed"
           >
             {t.solution.subtitle}
           </motion.p>
