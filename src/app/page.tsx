@@ -5,7 +5,6 @@ import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import ProblemSection from "@/components/ProblemSection";
 import SolutionSection from "@/components/SolutionSection";
-import DynamicSchedulingSection from "@/components/DynamicSchedulingSection";
 import FeaturesSection from "@/components/FeaturesSection";
 // import PricingSection from "@/components/PricingSection";
 import CompanionsSection from "@/components/CompanionsSection";
@@ -20,7 +19,6 @@ export default function Home() {
       <HeroSection t={t} />
       <ProblemSection t={t} />
       <SolutionSection t={t} />
-      <DynamicSchedulingSection t={t} />
       <FeaturesSection t={t} />
       {/*<PricingSection t={t} />*/}
       <CompanionsSection t={t} />
