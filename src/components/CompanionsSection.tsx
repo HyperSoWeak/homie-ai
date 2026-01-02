@@ -4,6 +4,7 @@ import { Content } from "@/types/content";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import clsx from "clsx";
+import { Quote } from "lucide-react";
 
 interface CompanionsSectionProps {
   t: Content;
@@ -35,80 +36,153 @@ const companionText: Record<string, string> = {
 
 export default function CompanionsSection({ t }: CompanionsSectionProps) {
   return (
-    <section className="py-32 bg-slate-950 overflow-hidden relative">
+    <section className="py-24 md:py-32 bg-slate-950 overflow-hidden relative">
       <div className="absolute inset-0 bg-noise opacity-30 pointer-events-none mix-blend-overlay" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-20">
+        <div className="text-center mb-16 md:mb-20">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold text-white mb-6"
+            className="text-3xl md:text-5xl font-bold text-white mb-6"
           >
             {t.companions.title}
           </motion.h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+        {/* Desktop Grid */}
+        <div className="hidden lg:grid grid-cols-5 gap-6">
           {t.companions.items.map((companion, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.6 }}
-              className={clsx(
-                "group relative h-[500px] rounded-3xl border backdrop-blur-sm overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl",
-                companionColors[companion.name],
-                companionGlows[companion.name],
-                "bg-slate-900/40"
-              )}
-            >
-              {/* Image / Avatar */}
-              <div className="absolute top-0 left-0 w-full h-3/5 overflow-hidden">
-                <div
-                  className={clsx(
-                    "absolute inset-0 bg-gradient-to-b opacity-20 group-hover:opacity-30 transition-opacity",
-                    companionColors[companion.name]
-                  )}
-                />
-                <Image
-                  src={`/mentor/${companion.name}.png`}
-                  alt={companion.name}
-                  fill
-                  className="object-cover object-top opacity-90 group-hover:scale-105 transition-transform duration-700 grayscale-[20%] group-hover:grayscale-0"
-                  sizes="(max-width: 768px) 100vw, 20vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent" />
-              </div>
-
-              {/* Content */}
-              <div className="absolute bottom-0 left-0 w-full h-2/3 p-6 flex flex-col justify-end bg-gradient-to-t from-slate-900 via-slate-900/90 to-transparent">
-                <div className="transform transition-transform duration-300 translate-y-4 group-hover:translate-y-0">
-                  <h3 className="text-2xl font-bold text-white mb-1">{companion.name}</h3>
-                  <p
-                    className={clsx(
-                      "text-xs font-bold uppercase tracking-wider mb-4",
-                      companionText[companion.name]
-                    )}
-                  >
-                    {companion.role}
-                  </p>
-
-                  <p className="text-sm text-slate-300 leading-relaxed mb-4 line-clamp-3 group-hover:line-clamp-none transition-all">
-                    {companion.desc}
-                  </p>
-
-                  <div className="mt-4 pt-4 border-t border-slate-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
-                    <p className="text-xs italic text-slate-400">&quot;{companion.quote}&quot;</p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+            <CompanionCard key={index} companion={companion} index={index} />
           ))}
+        </div>
+
+        {/* Mobile Horizontal Carousel */}
+        <div className="lg:hidden flex overflow-x-auto gap-4 px-4 -mx-4 pb-8 snap-x snap-mandatory no-scrollbar">
+          {t.companions.items.map((companion, index) => (
+            <MobileCompanionCard key={index} companion={companion} index={index} />
+          ))}
+          {/* Spacer for right padding */}
+          <div className="w-2 shrink-0" />
         </div>
       </div>
     </section>
+  );
+}
+
+function CompanionCard({ companion, index }: { companion: any; index: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.1, duration: 0.6 }}
+      whileHover={{ y: -8, transition: { duration: 0.3 } }}
+      className={clsx(
+        "group relative h-[500px] rounded-3xl border backdrop-blur-sm overflow-hidden",
+        companionColors[companion.name],
+        companionGlows[companion.name],
+        "bg-slate-900/40"
+      )}
+    >
+      {/* Image / Avatar */}
+      <div className="absolute top-0 left-0 w-full h-3/5 overflow-hidden">
+        <div
+          className={clsx(
+            "absolute inset-0 bg-gradient-to-b opacity-20 group-hover:opacity-30 transition-opacity duration-500",
+            companionColors[companion.name]
+          )}
+        />
+        <div className="relative w-full h-full transition-transform duration-700 group-hover:scale-105">
+          <Image
+            src={`/mentor/${companion.name}.png`}
+            alt={companion.name}
+            fill
+            className="object-cover object-top opacity-90 grayscale-[20%] group-hover:grayscale-0 transition-all duration-500"
+            sizes="(max-width: 1200px) 20vw"
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent" />
+      </div>
+
+      {/* Content */}
+      <div className="absolute bottom-0 left-0 w-full h-2/3 p-6 flex flex-col justify-end bg-gradient-to-t from-slate-900 via-slate-900/90 to-transparent">
+        <div className="transform transition-transform duration-500 translate-y-4 group-hover:translate-y-0">
+          <h3 className="text-2xl font-bold text-white mb-1">{companion.name}</h3>
+          <p
+            className={clsx(
+              "text-xs font-bold uppercase tracking-wider mb-4",
+              companionText[companion.name]
+            )}
+          >
+            {companion.role}
+          </p>
+
+          <p className="text-sm text-slate-300 leading-relaxed mb-4 line-clamp-3 group-hover:line-clamp-none transition-all duration-500">
+            {companion.desc}
+          </p>
+
+          <div className="mt-4 pt-4 border-t border-slate-800 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+            <p className="text-xs italic text-slate-400">&quot;{companion.quote}&quot;</p>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+function MobileCompanionCard({ companion, index }: { companion: any; index: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className={clsx(
+        "relative shrink-0 w-[85vw] max-w-[320px] snap-center rounded-[2.5rem] border overflow-hidden bg-slate-900/60 backdrop-blur-md flex flex-col",
+        companionColors[companion.name]
+      )}
+    >
+      {/* Image Header */}
+      <div className="relative h-64 w-full shrink-0">
+        <div
+          className={clsx(
+            "absolute inset-0 bg-gradient-to-b opacity-30",
+            companionColors[companion.name]
+          )}
+        />
+        <Image
+          src={`/mentor/${companion.name}.png`}
+          alt={companion.name}
+          fill
+          className="object-cover object-top"
+          sizes="(max-width: 768px) 85vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent" />
+      </div>
+
+      {/* Content Body */}
+      <div className="flex-1 p-8 pt-2 flex flex-col">
+        <h3 className="text-2xl font-bold text-white mb-1">{companion.name}</h3>
+        <p
+          className={clsx(
+            "text-xs font-bold uppercase tracking-wider mb-4",
+            companionText[companion.name]
+          )}
+        >
+          {companion.role}
+        </p>
+
+        <p className="text-sm text-slate-300 leading-relaxed mb-6">{companion.desc}</p>
+
+        <div className="mt-auto pt-4 border-t border-slate-800/50">
+          <div className="flex gap-3">
+            <Quote className={clsx("w-4 h-4 shrink-0 mt-0.5", companionText[companion.name])} />
+            <p className="text-sm italic text-slate-400">{companion.quote}</p>
+          </div>
+        </div>
+      </div>
+    </motion.div>
   );
 }
