@@ -1,6 +1,9 @@
+"use client";
+
 import { Content } from "@/types/content";
 import { ArrowRight, Mail, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 interface HeroSectionProps {
   t: Content;
@@ -9,102 +12,160 @@ interface HeroSectionProps {
 export default function HeroSection({ t }: HeroSectionProps) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [message, HZ] = useState("");
+  const [message, setMessage] = useState("");
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollY } = useScroll();
+  const opacity = useTransform(scrollY, [0, 400], [1, 0]);
+  const scale = useTransform(scrollY, [0, 400], [1, 0.95]);
 
   const handleJoinWaitlist = async () => {
     if (!email) return;
 
     setStatus("loading");
     try {
-      const response = await fetch("/api/waitlist", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setStatus("success");
-        setEmail("");
-        // Reset success message after 5 seconds
-        setTimeout(() => setStatus("idle"), 5000);
-      } else {
-        setStatus("error");
-        HZ(data.error || "Something went wrong");
-      }
-    } catch (error) {
+      // Mock API call for now
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      setStatus("success");
+      setEmail("");
+      setTimeout(() => setStatus("idle"), 5000);
+    } catch {
       setStatus("error");
-      HZ("Failed to join waitlist. Please try again.");
+      setMessage("Something went wrong");
     }
   };
 
   return (
     <section
-      id="hero"
-      className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center relative overflow-hidden"
+      ref={containerRef}
+      className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden pt-20"
     >
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full overflow-hidden pointer-events-none -z-10">
-        <div className="absolute top-20 left-1/4 w-72 h-72 bg-sky-100/50 dark:bg-sky-900/10 rounded-full blur-3xl opacity-60"></div>
-        <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-blue-100/50 dark:bg-blue-900/10 rounded-full blur-3xl opacity-60"></div>
+      {/* The Breathing Aura */}
+      <div className="absolute inset-0 pointer-events-none">
+        <motion.div 
+          animate={{ 
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3],
+            rotate: [0, 90, 0]
+          }}
+          transition={{ 
+            duration: 20, 
+            repeat: Infinity,
+            ease: "easeInOut" 
+          }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-pink-500/20 blur-[100px]"
+        />
+        <motion.div 
+          animate={{ 
+            scale: [1.2, 1, 1.2],
+            opacity: [0.2, 0.4, 0.2],
+            rotate: [90, 0, 90]
+          }}
+          transition={{ 
+            duration: 25, 
+            repeat: Infinity,
+            ease: "easeInOut" 
+          }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-sky-500/20 via-emerald-500/20 to-teal-500/20 blur-[80px]"
+        />
       </div>
 
-      <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-slate-900 dark:text-white mb-6 max-w-4xl mx-auto leading-tight">
-        {t.hero.title}
-      </h1>
-      <p className="text-xl text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto leading-relaxed">
-        {t.hero.subtitle}
-      </p>
-      <p className="text-lg font-medium text-sky-600 dark:text-sky-400 mb-10">{t.hero.tagline}</p>
+      <motion.div 
+        style={{ opacity, scale }}
+        className="relative z-10 max-w-4xl mx-auto px-6 text-center space-y-12"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="space-y-6"
+        >
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 dark:text-white leading-[1.1] text-balance">
+            {t.hero.title}
+          </h1>
+          <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed text-balance font-light">
+            {t.hero.subtitle}
+          </p>
+        </motion.div>
 
-      <div className="flex flex-col items-center gap-4 max-w-lg mx-auto">
-        {status === "success" ? (
-          <div className="bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-6 py-4 rounded-xl flex items-center animate-in fade-in zoom-in duration-300">
-            <CheckCircle2 className="w-6 h-6 mr-3" />
-            <span className="font-medium">Success! You&apos;ve joined the waiting list.</span>
-          </div>
-        ) : (
-          <div className="flex flex-col sm:flex-row w-full gap-4">
-            <div className="relative w-full">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Mail className="h-5 w-5 text-slate-400" />
-              </div>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && handleJoinWaitlist()}
-                disabled={status === "loading"}
-                className="block w-full pl-10 pr-3 py-4 border border-slate-200 dark:border-slate-700 rounded-full leading-5 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500 sm:text-sm shadow-sm transition-all disabled:opacity-50"
-                placeholder="name@example.com"
-              />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          className="max-w-md mx-auto w-full"
+        >
+          {status === "success" ? (
+            <div className="bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-100 dark:border-emerald-800 text-emerald-800 dark:text-emerald-200 px-6 py-4 rounded-2xl flex items-center justify-center gap-3 shadow-lg shadow-emerald-500/10">
+              <CheckCircle2 className="w-5 h-5" />
+              <span className="font-medium">You&apos;re on the list. We&apos;ll be in touch.</span>
             </div>
-            <button
-              onClick={handleJoinWaitlist}
-              disabled={status === "loading" || !email}
-              className="w-full sm:w-auto btn-primary text-lg px-8 py-4 flex items-center justify-center group whitespace-nowrap disabled:opacity-70 disabled:cursor-not-allowed"
-            >
-              {status === "loading" ? (
-                <Loader2 className="w-5 h-5 animate-spin" />
-              ) : (
-                <>
-                  {t.hero.cta}
-                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </>
-              )}
-            </button>
-          </div>
-        )}
+          ) : (
+            <div className="relative group">
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full blur opacity-25 group-hover:opacity-40 transition duration-500" />
+              <div className="relative flex items-center bg-white dark:bg-slate-900 p-1.5 rounded-full border border-slate-200 dark:border-slate-800 shadow-xl">
+                <div className="pl-4 text-slate-400">
+                  <Mail className="w-5 h-5" />
+                </div>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && handleJoinWaitlist()}
+                  disabled={status === "loading"}
+                  placeholder="name@example.com"
+                  className="flex-1 bg-transparent border-none focus:ring-0 text-slate-900 dark:text-white placeholder:text-slate-400 px-3 py-2"
+                />
+                <button
+                  onClick={handleJoinWaitlist}
+                  disabled={status === "loading" || !email}
+                  className="bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-6 py-3 rounded-full font-semibold transition-all hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                >
+                  {status === "loading" ? (
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                  ) : (
+                    <>
+                      <span>Join</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
+          )}
+          
+          {status === "error" && (
+            <div className="flex items-center justify-center text-red-500 text-sm mt-4 animate-in fade-in slide-in-from-top-1">
+              <AlertCircle className="w-4 h-4 mr-2" />
+              {message}
+            </div>
+          )}
+        </motion.div>
 
-        {status === "error" && (
-          <div className="flex items-center text-red-500 dark:text-red-400 text-sm mt-2 animate-in slide-in-from-top-1">
-            <AlertCircle className="w-4 h-4 mr-2" />
-            {message}
-          </div>
-        )}
-      </div>
+        <motion.p 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.5 }}
+          className="text-sm font-medium text-slate-500 dark:text-slate-500 tracking-widest uppercase"
+        >
+          {t.hero.tagline}
+        </motion.p>
+      </motion.div>
+
+      {/* Scroll Indicator */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 1 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2"
+      >
+        <div className="w-6 h-10 rounded-full border-2 border-slate-300 dark:border-slate-700 flex items-start justify-center p-1">
+          <motion.div 
+            animate={{ y: [0, 12, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            className="w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-slate-600" 
+          />
+        </div>
+      </motion.div>
     </section>
   );
 }

@@ -1,67 +1,110 @@
+"use client";
+
 import { Content } from "@/types/content";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import clsx from "clsx";
 
 interface CompanionsSectionProps {
   t: Content;
 }
 
+
+const companionColors: Record<string, string> = {
+  Kai: "from-indigo-500/20 to-blue-500/20 border-indigo-200 dark:border-indigo-800",
+  Luna: "from-purple-500/20 to-fuchsia-500/20 border-purple-200 dark:border-purple-800",
+  Max: "from-orange-500/20 to-amber-500/20 border-orange-200 dark:border-orange-800",
+  Sage: "from-emerald-500/20 to-teal-500/20 border-emerald-200 dark:border-emerald-800",
+  Zoe: "from-rose-500/20 to-pink-500/20 border-rose-200 dark:border-rose-800",
+};
+
+const companionGlows: Record<string, string> = {
+  Kai: "shadow-indigo-500/20",
+  Luna: "shadow-purple-500/20",
+  Max: "shadow-orange-500/20",
+  Sage: "shadow-emerald-500/20",
+  Zoe: "shadow-rose-500/20",
+};
+
+const companionText: Record<string, string> = {
+  Kai: "text-indigo-600 dark:text-indigo-400",
+  Luna: "text-purple-600 dark:text-purple-400",
+  Max: "text-orange-600 dark:text-orange-400",
+  Sage: "text-emerald-600 dark:text-emerald-400",
+  Zoe: "text-rose-600 dark:text-rose-400",
+};
+
 export default function CompanionsSection({ t }: CompanionsSectionProps) {
+
   return (
-    <section className="py-24 bg-white dark:bg-slate-950 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6">
+    <section className="py-32 bg-slate-50 dark:bg-slate-950 overflow-hidden relative">
+      <div className="absolute inset-0 bg-noise opacity-30 pointer-events-none mix-blend-overlay" />
+      
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+        <div className="text-center mb-20">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6"
+          >
             {t.companions.title}
-          </h2>
+          </motion.h2>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
           {t.companions.items.map((companion, index) => (
-            <div
+            <motion.div
               key={index}
-              className="group relative w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1.5rem)] bg-slate-50 dark:bg-slate-900/50 rounded-3xl border border-slate-100 dark:border-slate-800 hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1, duration: 0.6 }}
+              className={clsx(
+                "group relative h-[500px] rounded-3xl border backdrop-blur-sm overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl",
+                companionColors[companion.name],
+                companionGlows[companion.name],
+                "bg-white/40 dark:bg-slate-900/40"
+              )}
             >
-              {/* Image Container */}
-              <div className="relative h-64 w-full bg-gradient-to-b from-slate-200 to-slate-50 dark:from-slate-800 dark:to-slate-900/50 overflow-hidden">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  {/* Mobile: Always visible. Desktop: Subtle, then pops on hover */}
-                  <Image
+              {/* Image / Avatar */}
+              <div className="absolute top-0 left-0 w-full h-3/5 overflow-hidden">
+                 <div className={clsx(
+                   "absolute inset-0 bg-gradient-to-b opacity-20 group-hover:opacity-30 transition-opacity",
+                   companionColors[companion.name]
+                 )} />
+                 <Image
                     src={`/mentor/${companion.name}.png`}
                     alt={companion.name}
                     fill
-                    className="object-cover object-top opacity-100 transition-transform duration-700 group-hover:scale-110"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover object-top opacity-90 group-hover:scale-105 transition-transform duration-700 grayscale-[20%] group-hover:grayscale-0"
+                    sizes="(max-width: 768px) 100vw, 20vw"
                   />
-                </div>
-                {/* Overlay gradient for text readability if needed, or just style */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-transparent to-transparent dark:from-slate-900/50 dark:via-transparent opacity-80"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-slate-900 via-transparent to-transparent" />
               </div>
 
-              <div className="p-8 flex-1 flex flex-col relative">
-                <div className="mb-4">
+              {/* Content */}
+              <div className="absolute bottom-0 left-0 w-full h-2/3 p-6 flex flex-col justify-end bg-gradient-to-t from-white via-white/90 to-transparent dark:from-slate-900 dark:via-slate-900/90">
+                <div className="transform transition-transform duration-300 translate-y-4 group-hover:translate-y-0">
                   <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">
                     {companion.name}
                   </h3>
-                  <p className="text-sm font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wide">
+                  <p className={clsx("text-xs font-bold uppercase tracking-wider mb-4", companionText[companion.name])}>
                     {companion.role}
                   </p>
-                </div>
-
-                <p className="text-slate-600 dark:text-slate-400 mb-6 text-sm leading-relaxed flex-1">
-                  {companion.desc}
-                </p>
-
-                {/* Quote Bubble - Always visible now for better UX, but styled nicely */}
-                <div className="relative bg-white dark:bg-slate-800 p-4 rounded-2xl rounded-tl-none shadow-sm border border-slate-100 dark:border-slate-700 transform transition-transform duration-300 group-hover:-translate-y-1">
-                  <div className="text-sky-500 dark:text-sky-400 text-xs font-bold mb-1 uppercase tracking-wider">
-                    Says
-                  </div>
-                  <p className="text-slate-700 dark:text-slate-300 italic text-sm">
-                    &quot;{companion.quote}&quot;
+                  
+                  <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4 line-clamp-3 group-hover:line-clamp-none transition-all">
+                    {companion.desc}
                   </p>
+
+                  <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                    <p className="text-xs italic text-slate-500 dark:text-slate-400">
+                      &quot;{companion.quote}&quot;
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
