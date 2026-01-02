@@ -21,12 +21,14 @@ export default function HeroSection({ t }: HeroSectionProps) {
 
   const handleJoinWaitlist = async () => {
     if (!email) return;
-    
+
     // Simple email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       setStatus("error");
-      setMessage(t.lang === "en" ? "Please enter a valid email address." : "請輸入有效的電子郵件地址。");
+      setMessage(
+        t.lang === "en" ? "Please enter a valid email address." : "請輸入有效的電子郵件地址。"
+      );
       return;
     }
 

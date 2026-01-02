@@ -74,7 +74,6 @@ export default function DynamicSchedulingSection({ t }: DynamicSchedulingSection
               {/* Phone Notch */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 sm:w-32 h-6 bg-slate-800 rounded-b-xl z-20" />
 
-
               {/* Phone Screen */}
               <div className="absolute inset-0 bg-slate-50 dark:bg-slate-900 p-6 pt-12 flex flex-col">
                 {/* Header */}
