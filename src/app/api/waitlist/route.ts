@@ -33,7 +33,7 @@ export async function POST(request: Request) {
 
     // Append the email to the sheet
     const timestamp = new Date().toISOString();
-    
+
     await sheets.spreadsheets.values.append({
       spreadsheetId: sheetId,
       range: "Sheet1!A:B", // Appends to columns A and B of "Sheet1"
@@ -42,6 +42,41 @@ export async function POST(request: Request) {
         values: [[timestamp, email]],
       },
     });
+
+    // Get the updated count of entries
+    const countRes = await sheets.spreadsheets.values.get({
+      spreadsheetId: sheetId,
+      range: "Sheet1!B:B",
+    });
+    const count = countRes.data.values?.length ?? 0;
+
+    if (process.env.DISCORD_WEBHOOK_URL) {
+      await fetch(process.env.DISCORD_WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          embeds: [
+            {
+              title: "✨ New Homie Waitlist Signup 🎉",
+              color: 0x5865f2,
+              fields: [
+                {
+                  name: "Email",
+                  value: email,
+                  inline: false,
+                },
+                {
+                  name: "Count",
+                  value: `#${count}`,
+                  inline: false,
+                },
+              ],
+              timestamp: new Date().toISOString(),
+            },
+          ],
+        }),
+      });
+    }
 
     return NextResponse.json({ message: "Successfully joined waitlist" }, { status: 200 });
   } catch (error) {

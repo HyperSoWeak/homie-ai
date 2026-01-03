@@ -13,26 +13,44 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = process.env.SITE_URL || "https://homie-calendar.vercel.app";
+const siteName = "Homie";
+
 export const metadata: Metadata = {
-  title: "Homie Mentor - 你的AI行動計劃夥伴",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Homie｜AI-Powered Calendar That Adapts to You",
+    template: "%s｜Homie",
+  },
   description:
-    "Homie Mentor 是一款為使用者生成行動計劃，並持續動態調整計畫的強度以及時程配置，以及給予情緒支持和進度回顧的 AI 夥伴。",
-  keywords: ["AI助手", "行動計劃", "目標達成", "情緒支持", "生產力工具", "個人成長"],
-  authors: [{ name: "Homie Mentor Team" }],
-  creator: "Homie Mentor",
-  publisher: "Homie Mentor",
+    "Homie is an AI-powered calendar that adjusts itself based on your energy, mood, workload, and unexpected changes. Stop forcing yourself to fit your calendar.",
+  applicationName: "Homie",
+  authors: [{ name: "Homie Team" }],
+  creator: "Homie",
+  publisher: "Homie",
+  keywords: [
+    "AI calendar",
+    "dynamic scheduling",
+    "schedule optimizer",
+    "task prioritization",
+    "calendar sync",
+    "productivity",
+    "weekly insights",
+  ],
   openGraph: {
-    title: "Homie Mentor - 你的AI行動計劃夥伴",
-    description: "智慧生成個人化行動計劃，提供溫暖的情緒支持，讓你在達成目標的路上不再孤單。",
-    url: "https://homie-mentor.com",
-    siteName: "Homie Mentor",
-    locale: "zh_TW",
+    title: "Homie｜Your AI Schedule Team — Built to Adapt to You",
+    description:
+      "The first AI-powered calendar that rebuilds your day when plans change. Real-time adjustments, smart prioritization, and unified calendars.",
+    url: siteUrl,
+    siteName,
+    locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Homie Mentor - 你的AI行動計劃夥伴",
-    description: "智慧生成個人化行動計劃，提供溫暖的情緒支持，讓你在達成目標的路上不再孤單。",
+    title: "Homie｜Your AI Schedule Team",
+    description:
+      "An AI-powered calendar that adapts to your energy, mood, workload, and surprises. Your day, rebuilt in real time.",
   },
   robots: {
     index: true,
@@ -44,10 +62,6 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
-  },
-  verification: {
-    google: "google-site-verification-code",
-    yandex: "yandex-verification-code",
   },
   icons: {
     icon: [
