@@ -16,8 +16,8 @@ export default function HeroSection({ t }: HeroSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const { scrollY } = useScroll();
-  const opacity = useTransform(scrollY, [0, 400], [1, 0]);
-  const scale = useTransform(scrollY, [0, 400], [1, 0.95]);
+  const opacity = useTransform(scrollY, [0, 600], [1, 0]);
+  const scale = useTransform(scrollY, [0, 600], [1, 0.95]);
 
   const handleJoinWaitlist = async () => {
     if (!email) return;
