@@ -129,90 +129,97 @@ export default function SolutionSection({ t }: SolutionSectionProps) {
            */}
            
           <div className="sticky top-0 h-[100dvh] flex flex-col items-center justify-center overflow-hidden pb-20">
-            {/* Phone Display - Centered */}
-            <div className="relative w-[280px] h-[540px] md:w-[340px] md:h-[680px] bg-slate-900 rounded-[2.5rem] md:rounded-[3.5rem] border-[8px] md:border-[10px] border-slate-800 shadow-2xl overflow-hidden ring-1 ring-white/10 transition-all duration-500">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 md:w-32 md:h-7 bg-slate-800 rounded-b-xl md:rounded-b-2xl z-20" />
-              
-              {/* Phone Content (Light Mode) */}
-              <div className="absolute inset-0 bg-slate-50 p-6 pt-12 md:p-8 md:pt-14 flex flex-col">
-                <div className="flex justify-between items-center mb-6 md:mb-8">
-                  <div>
-                    <h4 className="font-bold text-lg md:text-xl text-slate-900">Today</h4>
-                    <p className="text-xs md:text-sm text-slate-500">Wed, Jan 3</p>
+            {/* Phone + AI Wrapper - Keeps them anchored together */}
+            <div className="relative">
+                {/* Phone Display - Centered */}
+                <div className="relative w-[280px] h-[540px] md:w-[340px] md:h-[680px] bg-slate-900 rounded-[2.5rem] md:rounded-[3.5rem] border-[8px] md:border-[10px] border-slate-800 shadow-2xl overflow-hidden ring-1 ring-white/10 transition-all duration-500 z-10">
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 md:w-32 md:h-7 bg-slate-800 rounded-b-xl md:rounded-b-2xl z-20" />
+                  
+                  {/* Phone Content (Light Mode) */}
+                  <div className="absolute inset-0 bg-slate-50 p-6 pt-12 md:p-8 md:pt-14 flex flex-col">
+                    <div className="flex justify-between items-center mb-6 md:mb-8">
+                      <div>
+                        <h4 className="font-bold text-lg md:text-xl text-slate-900">Today</h4>
+                        <p className="text-xs md:text-sm text-slate-500">Wed, Jan 3</p>
+                      </div>
+                      <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-slate-200 flex items-center justify-center">
+                        <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-indigo-500 rounded-full" />
+                      </div>
+                    </div>
+                    
+                    <div className="flex-1 space-y-3 md:space-y-4 relative overflow-hidden">
+                      <AnimatePresence mode="popLayout">
+                        {schedules[activeStep]
+                          ? schedules[activeStep].map((item, i) => (
+                              <motion.div
+                                layout
+                                key={`${activeStep}-${i}`}
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: 20 }}
+                                transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                                className={clsx(
+                                  "p-3 md:p-4 rounded-xl md:rounded-2xl border-l-[4px] md:border-l-[6px] shadow-sm",
+                                  // Light Mode Styles
+                                  item.type === "work" && "bg-white border-indigo-500 shadow-indigo-100",
+                                  item.type === "meeting" && "bg-indigo-50 border-indigo-400",
+                                  item.type === "break" && "bg-emerald-50 border-emerald-400",
+                                  item.type === "admin" && "bg-slate-100 border-slate-400",
+                                  item.type === "urgent" && "bg-red-50 border-red-500",
+                                  item.type === "focus" && "bg-slate-800 border-slate-700 text-white" // Keep focus dark for contrast? Or make it light? Let's keep focus distinct.
+                                )}
+                              >
+                                <div className="flex justify-between items-center mb-1">
+                                  <span className={clsx("text-xs md:text-sm font-mono", item.type === "focus" ? "text-slate-400" : "text-slate-500")}>{item.time}</span>
+                                  <span className={clsx("text-xs md:text-sm font-mono", item.type === "focus" ? "text-slate-500" : "text-slate-400")}>
+                                    {item.duration}
+                                  </span>
+                                </div>
+                                <p className={clsx("font-semibold text-sm md:text-base", item.type === "focus" ? "text-slate-100" : "text-slate-900")}>{item.task}</p>
+                              </motion.div>
+                            ))
+                          : null}
+                      </AnimatePresence>
+                    </div>
+                    
+                    <div className="absolute bottom-8 right-8 w-12 h-12 md:w-14 md:h-14 bg-indigo-600 rounded-full flex items-center justify-center text-white shadow-lg shadow-indigo-500/30 hover:scale-110 transition-transform cursor-pointer">
+                      <Clock className="w-5 h-5 md:w-6 md:h-6" />
+                    </div>
                   </div>
-                  <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-slate-200 flex items-center justify-center">
-                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-indigo-500 rounded-full" />
-                  </div>
                 </div>
-                
-                <div className="flex-1 space-y-3 md:space-y-4 relative overflow-hidden">
-                  <AnimatePresence mode="popLayout">
-                    {schedules[activeStep]
-                      ? schedules[activeStep].map((item, i) => (
-                          <motion.div
-                            layout
-                            key={`${activeStep}-${i}`}
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: 20 }}
-                            transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                            className={clsx(
-                              "p-3 md:p-4 rounded-xl md:rounded-2xl border-l-[4px] md:border-l-[6px] shadow-sm",
-                              // Light Mode Styles
-                              item.type === "work" && "bg-white border-indigo-500 shadow-indigo-100",
-                              item.type === "meeting" && "bg-indigo-50 border-indigo-400",
-                              item.type === "break" && "bg-emerald-50 border-emerald-400",
-                              item.type === "admin" && "bg-slate-100 border-slate-400",
-                              item.type === "urgent" && "bg-red-50 border-red-500",
-                              item.type === "focus" && "bg-slate-800 border-slate-700 text-white" // Keep focus dark for contrast? Or make it light? Let's keep focus distinct.
-                            )}
-                          >
-                            <div className="flex justify-between items-center mb-1">
-                              <span className={clsx("text-xs md:text-sm font-mono", item.type === "focus" ? "text-slate-400" : "text-slate-500")}>{item.time}</span>
-                              <span className={clsx("text-xs md:text-sm font-mono", item.type === "focus" ? "text-slate-500" : "text-slate-400")}>
-                                {item.duration}
-                              </span>
-                            </div>
-                            <p className={clsx("font-semibold text-sm md:text-base", item.type === "focus" ? "text-slate-100" : "text-slate-900")}>{item.task}</p>
-                          </motion.div>
-                        ))
-                      : null}
-                  </AnimatePresence>
-                </div>
-                
-                <div className="absolute bottom-8 right-8 w-12 h-12 md:w-14 md:h-14 bg-indigo-600 rounded-full flex items-center justify-center text-white shadow-lg shadow-indigo-500/30 hover:scale-110 transition-transform cursor-pointer">
-                  <Clock className="w-5 h-5 md:w-6 md:h-6" />
-                </div>
-              </div>
-            </div>
 
-            {/* AI Companion & Speech Bubble - Bottom Left (Unified) */}
-            <div className="absolute bottom-8 left-6 md:left-12 z-30 flex items-end gap-4 pointer-events-none max-w-[90%] md:max-w-xl">
-                {/* AI Image - Larger on Desktop */}
-                <div className="relative shrink-0 w-20 h-20 md:w-32 md:h-32 rounded-full overflow-hidden border-2 md:border-4 border-white shadow-2xl bg-indigo-100 transition-all duration-500">
-                   <Image 
-                     src="/mentor/Zoe.png" 
-                     alt="Zoe" 
-                     fill 
-                     className="object-cover"
-                     sizes="(max-width: 768px) 80px, 128px"
-                   />
-                </div>
-                
-                {/* Speech Bubble */}
-                <div className="bg-white/95 backdrop-blur-md p-5 md:p-6 rounded-3xl rounded-bl-none shadow-2xl border border-slate-100 text-slate-800 text-sm md:text-lg shadow-indigo-900/20 flex-1 origin-bottom-left transition-all duration-500">
-                   <AnimatePresence mode="wait">
-                     <motion.div
-                        key={activeStep}
-                        initial={{ opacity: 0, y: 5 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -5 }}
-                        transition={{ duration: 0.2 }}
-                     >
-                       <p className="font-bold text-indigo-900 mb-1 md:mb-2 text-base md:text-xl">{currentText.title}</p>
-                       <p className="font-medium text-slate-600 leading-snug md:leading-relaxed">{currentText.desc}</p>
-                     </motion.div>
-                   </AnimatePresence>
+                {/* AI Companion & Speech Bubble - Overlapping Bottom Left */}
+                {/* 
+                    Mobile: Shifted left slightly (-ml-4) and up (-mb-10) to overlap
+                    Desktop: Shifted left more to sit "beside" but overlapping (-left-20)
+                */}
+                <div className="absolute bottom-[-20px] left-[-20px] md:bottom-[40px] md:left-[-140px] lg:left-[-180px] z-30 flex items-end gap-2 pointer-events-none w-[300px] md:w-[400px]">
+                    {/* AI Image */}
+                    <div className="relative shrink-0 w-16 h-16 md:w-24 md:h-24 rounded-full overflow-hidden border-4 border-slate-950 shadow-[0_10px_30px_rgba(0,0,0,0.5)] bg-indigo-100 transition-all duration-500">
+                       <Image 
+                         src="/mentor/Zoe.png" 
+                         alt="Zoe" 
+                         fill 
+                         className="object-cover"
+                         sizes="(max-width: 768px) 64px, 96px"
+                       />
+                    </div>
+                    
+                    {/* Speech Bubble */}
+                    <div className="bg-white/95 backdrop-blur-md p-3 md:p-5 rounded-2xl md:rounded-3xl rounded-bl-none shadow-[0_20px_50px_rgba(0,0,0,0.2)] border border-slate-200 text-slate-800 text-sm md:text-base shadow-indigo-900/20 flex-1 origin-bottom-left transition-all duration-500 mb-4 md:mb-0">
+                       <AnimatePresence mode="wait">
+                         <motion.div
+                            key={activeStep}
+                            initial={{ opacity: 0, y: 5 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -5 }}
+                            transition={{ duration: 0.2 }}
+                         >
+                           <p className="font-bold text-indigo-900 mb-0.5 md:mb-1 text-sm md:text-base">{currentText.title}</p>
+                           <p className="font-medium text-slate-600 leading-snug text-xs md:text-sm">{currentText.desc}</p>
+                         </motion.div>
+                       </AnimatePresence>
+                    </div>
                 </div>
             </div>
           </div>
