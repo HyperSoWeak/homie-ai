@@ -3,6 +3,7 @@
 import { Content } from "@/types/content";
 import { ArrowUp, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
+import { ParticleBackground } from "./ParticleBackground";
 
 interface FooterProps {
   t: Content;
@@ -50,19 +51,27 @@ export default function Footer({ t }: FooterProps) {
           {t.footer.text}
         </motion.h2>
 
-        <motion.button
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={scrollToTop}
-          className="group relative inline-flex items-center gap-3 bg-white text-slate-950 px-10 py-5 rounded-full font-bold text-lg shadow-2xl hover:shadow-indigo-500/20 transition-all overflow-hidden"
-        >
-          <span className="relative z-10">{t.footer.cta}</span>
-          <ArrowUp className="w-5 h-5 relative z-10 group-hover:-translate-y-1 transition-transform" />
-          <div className="absolute inset-0 bg-gradient-to-r from-indigo-50 to-white opacity-0 group-hover:opacity-100 transition-opacity" />
-        </motion.button>
+        <div className="relative inline-block group">
+          {/* Button Glow & Particles - Always Visible */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[150%] opacity-70 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+             <div className="absolute inset-0 bg-indigo-500/30 blur-[50px] rounded-full animate-pulse" />
+             <ParticleBackground color="rgba(129, 140, 248, 0.8)" />
+          </div>
+
+          <motion.button
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={scrollToTop}
+            className="group relative inline-flex items-center gap-3 bg-white text-slate-950 px-10 py-5 rounded-full font-bold text-lg shadow-2xl hover:shadow-indigo-500/20 transition-all overflow-hidden z-10"
+          >
+            <span className="relative z-10">{t.footer.cta}</span>
+            <ArrowUp className="w-5 h-5 relative z-10 group-hover:-translate-y-1 transition-transform" />
+            <div className="absolute inset-0 bg-gradient-to-r from-indigo-50 to-white opacity-0 group-hover:opacity-100 transition-opacity" />
+          </motion.button>
+        </div>
 
         <div className="mt-32 pt-8 border-t border-slate-800/50 text-slate-500 text-sm">
           <p>© {new Date().getFullYear()} Homie AI. All rights reserved.</p>

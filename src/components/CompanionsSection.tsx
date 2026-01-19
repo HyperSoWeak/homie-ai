@@ -3,8 +3,10 @@
 import { Content } from "@/types/content";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useRef, useEffect } from "react";
 import clsx from "clsx";
 import { Quote } from "lucide-react";
+import { ParticleBackground } from "./ParticleBackground";
 
 interface CompanionsSectionProps {
   t: Content;
@@ -32,6 +34,14 @@ const companionText: Record<string, string> = {
   Max: "text-orange-400",
   Sage: "text-emerald-400",
   Zoe: "text-rose-400",
+};
+
+const particleColors: Record<string, string> = {
+  Kai: "rgba(99, 102, 241, 0.6)", // Indigo
+  Luna: "rgba(168, 85, 247, 0.6)", // Purple
+  Max: "rgba(249, 115, 22, 0.6)", // Orange
+  Sage: "rgba(16, 185, 129, 0.6)", // Emerald
+  Zoe: "rgba(244, 63, 94, 0.6)", // Rose
 };
 
 type Companion = Content["companions"]["items"][number];
@@ -97,19 +107,20 @@ function CompanionCard({ companion, index }: { companion: Companion; index: numb
           )}
         />
         <div className="relative w-full h-full transition-transform duration-700 group-hover:scale-105">
+          <ParticleBackground color={particleColors[companion.name]} />
           <Image
             src={`/mentor/${companion.name}.png`}
             alt={companion.name}
             fill
-            className="object-cover object-top opacity-90 grayscale-[20%] group-hover:grayscale-0 transition-all duration-500"
+            className="object-cover object-top opacity-90 grayscale-[20%] group-hover:grayscale-0 transition-all duration-500 relative z-10"
             sizes="(max-width: 1200px) 20vw"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent z-20" />
       </div>
 
       {/* Content */}
-      <div className="absolute bottom-0 left-0 w-full h-2/3 p-6 flex flex-col justify-end bg-gradient-to-t from-slate-900 via-slate-900/90 to-transparent">
+      <div className="absolute bottom-0 left-0 w-full h-2/3 p-6 flex flex-col justify-end bg-gradient-to-t from-slate-900 via-slate-900/90 to-transparent z-30">
         <div className="transform transition-transform duration-500 translate-y-4 group-hover:translate-y-0">
           <h3 className="text-2xl font-bold text-white mb-1">{companion.name}</h3>
           <p
@@ -154,18 +165,19 @@ function MobileCompanionCard({ companion }: { companion: Companion }) {
             companionColors[companion.name]
           )}
         />
+        <ParticleBackground color={particleColors[companion.name]} />
         <Image
           src={`/mentor/${companion.name}.png`}
           alt={companion.name}
           fill
-          className="object-cover object-top"
+          className="object-cover object-top relative z-10"
           sizes="(max-width: 768px) 85vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent z-20" />
       </div>
 
       {/* Content Body */}
-      <div className="flex-1 p-8 pt-2 flex flex-col">
+      <div className="flex-1 p-8 pt-2 flex flex-col relative z-30">
         <h3 className="text-2xl font-bold text-white mb-1">{companion.name}</h3>
         <p
           className={clsx(
@@ -188,3 +200,5 @@ function MobileCompanionCard({ companion }: { companion: Companion }) {
     </motion.div>
   );
 }
+
+
