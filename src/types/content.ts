@@ -31,6 +31,8 @@ export interface Content {
     items: {
       title: string;
       desc: string;
+      solutionTitle: string;
+      solutionDesc: string;
     }[];
   };
   solution: {

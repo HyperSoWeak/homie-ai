@@ -68,26 +68,38 @@ export const content: Record<"en" | "zh-tw", Content> = {
         {
           title: "Endless Reorganizing",
           desc: "You spend hours every week reorganizing your day.",
+          solutionTitle: "Automated Dynamic Scheduling",
+          solutionDesc: "Save hours of manual adjustments weekly. Keep your schedule always optimized.",
         },
         {
           title: "Fragile Plans",
           desc: "One unexpected task collapses your entire schedule.",
+          solutionTitle: "High Resilience",
+          solutionDesc: "Adapt to unexpected changes instantly. Your plan always keeps up with reality.",
         },
         {
           title: "Static Calendar",
           desc: "Your energy and focus change, but your calendar never does.",
+          solutionTitle: "Energy-Based Management",
+          solutionDesc: "Align tasks with your focus and energy levels. Do the right thing at the right time.",
         },
         {
           title: "Decision Fatigue",
           desc: "You know your priorities, but fragmented time makes it hard to decide when each task fits best.",
+          solutionTitle: "Precision Execution",
+          solutionDesc: "Stop decision fatigue. The system predicts the best starting point so you can focus on output.",
         },
         {
           title: "Solo Struggle",
           desc: "Working alone means no one helps you sort or reprioritize your tasks.",
+          solutionTitle: "Digital Second Brain",
+          solutionDesc: "Like a senior executive assistant, proactively organizing your rhythm and priorities.",
         },
         {
           title: "Fragmented Tools",
           desc: "Your calendars and todos live in separate apps, so you keep switching back and forth just to avoid overlaps or missed tasks.",
+          solutionTitle: "All-in-One Integration",
+          solutionDesc: "Seamlessly stitch calendar and todos together. Control every action in one single view.",
         },
       ],
     },
@@ -220,6 +232,7 @@ export const content: Record<"en" | "zh-tw", Content> = {
           features: ["AI 最佳化", "即時調整", "優先級建議", "每週洞察"],
           cta: "加入等待名單",
           popular: true,
+          
         },
         {
           name: "月訂閱",
@@ -243,26 +256,38 @@ export const content: Record<"en" | "zh-tw", Content> = {
         {
           title: "無止盡的重排",
           desc: "每週花好幾個小時在重新排程。",
+          solutionTitle: "自動化動態排程",
+          solutionDesc: "節省每週數小時的繁瑣手動調整，讓排程隨時保持最優狀態。",
         },
         {
           title: "脆弱的計畫",
           desc: "一件突發事情就毀掉一整天的安排。",
+          solutionTitle: "高韌性的應變力",
+          solutionDesc: "無懼突發狀況，系統會即時為你重新導航，讓計畫始終跟得上變化。",
         },
         {
           title: "僵化的行事曆",
           desc: "能量與專注度每天不同，但你的行事曆永遠不會改變。",
+          solutionTitle: "能量導向管理",
+          solutionDesc: "根據你的專注力與能量波動調整任務，在最合適的狀態做最對的事。",
         },
         {
           title: "決策疲勞",
           desc: "你知道該做什麼，只是常常時間碎片化不知道「什麼時候」最適合做。",
+          solutionTitle: "精準執行建議",
+          solutionDesc: "告別選擇困難，讓系統為你預判最佳切入點，你只需專注於產出。",
         },
         {
           title: "孤軍奮戰",
           desc: "一個人工作時，沒有人幫你排序、重整、抓節奏。",
+          solutionTitle: "專屬數位大腦",
+          solutionDesc: "像擁有一位資深特助，主動為你梳理節奏、整理優先順序。",
         },
         {
           title: "工具分散",
           desc: "你的日曆和待辦事項分散在不同 App 中，為了避免時間衝突或遺漏任務，你只能不斷來回切換。",
+          solutionTitle: "全方位一站整合",
+          solutionDesc: "將日曆與待辦事項完美縫合，在單一視角下掌控所有行動。",
         },
       ],
     },
