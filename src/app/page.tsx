@@ -7,6 +7,7 @@ import ProblemSection from "@/components/ProblemSection";
 import SolutionSection from "@/components/SolutionSection";
 import FeaturesSection from "@/components/FeaturesSection";
 // import PricingSection from "@/components/PricingSection";
+import MidSectionCta from "@/components/MidSectionCta";
 import CompanionsSection from "@/components/CompanionsSection";
 import Footer from "@/components/Footer";
 
@@ -19,6 +20,7 @@ export default function Home() {
       <HeroSection t={t} />
       <ProblemSection t={t} />
       <SolutionSection t={t} />
+      <MidSectionCta t={t} />
       <FeaturesSection t={t} />
       {/*<PricingSection t={t} />*/}
       <CompanionsSection t={t} />

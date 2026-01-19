@@ -197,6 +197,11 @@ export const content: Record<"en" | "zh-tw", Content> = {
         },
       ],
     },
+    midSectionCta: {
+      title: "Ready to reclaim your time?",
+      subtitle: "Join the waitlist and be the first to experience Homie.",
+      cta: "Join Waiting List",
+    },
     footer: {
       text: "Ready to reclaim your time? Let's build your perfect rhythm.",
       cta: "Join Waiting List",
@@ -384,6 +389,11 @@ export const content: Record<"en" | "zh-tw", Content> = {
           quote: "沒事的，我們一起重新來過。",
         },
       ],
+    },
+    midSectionCta: {
+      title: "準備好找回你的時間了嗎？",
+      subtitle: "加入等待名單，搶先體驗 Homie。",
+      cta: "加入等待名單",
     },
     footer: {
       text: "準備好找回你的時間了嗎？讓我們一起打造最適合你的生活節奏。",

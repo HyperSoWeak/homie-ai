@@ -65,6 +65,11 @@ export interface Content {
       quote: string;
     }[];
   };
+  midSectionCta: {
+    title: string;
+    subtitle: string;
+    cta: string;
+  };
   footer: {
     text: string;
     cta: string;
