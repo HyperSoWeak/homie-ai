@@ -40,6 +40,8 @@ export interface Content {
     subtitle: string;
     today: string;
     date: string;
+    labelOriginal: string;
+    labelAdjusted: string;
     items: {
       title: string;
       desc: string;

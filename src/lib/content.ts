@@ -108,6 +108,8 @@ export const content: Record<"en" | "zh-tw", Content> = {
       subtitle: "When your day falls apart, your plan doesn’t have to",
       today: "Today",
       date: "Wed, Jan 3",
+      labelOriginal: "Original Plan",
+      labelAdjusted: "Homie Adjusted",
       items: [
         {
           title: "Overslept?",
@@ -248,7 +250,7 @@ export const content: Record<"en" | "zh-tw", Content> = {
       cta: "Join Waiting List",
     },
     footer: {
-      text: "Ready to reclaim your time? Let's build your perfect rhythm.",
+      text: "Let's build your perfect rhythm.",
       cta: "Join Waiting List",
     },
     eaLink: "",
@@ -334,9 +336,9 @@ export const content: Record<"en" | "zh-tw", Content> = {
           solutionDesc: "像擁有一位資深特助，主動為你梳理節奏、整理優先順序。",
         },
         {
-          title: "工具分散",
-          desc: "你的日曆和待辦事項分散在不同 App 中，為了避免時間衝突或遺漏任務，你只能不斷來回切換。",
-          solutionTitle: "全方位一站整合",
+                    title: "工具分散",
+                    desc: "你的日曆和待辦事項分散在不同 App 中，為了避免時間衝突或遺漏任務，你只能不斷來回切換。",
+                    solutionTitle: "全方位一站整合",
           solutionDesc: "將日曆與待辦事項完美縫合，在單一視角下掌控所有行動。",
         },
       ],
@@ -346,6 +348,8 @@ export const content: Record<"en" | "zh-tw", Content> = {
       subtitle: "當你的生活突然變動，你的計畫不需要一起崩塌",
       today: "今天",
       date: "1月3日 (週三)",
+      labelOriginal: "原始計畫",
+      labelAdjusted: "Homie 調整後",
       items: [
         {
           title: "睡過頭？",
@@ -376,10 +380,10 @@ export const content: Record<"en" | "zh-tw", Content> = {
     solutionSchedules: [
       // 0: Normal
       [
-        { time: "9:00", task: "深度工作", type: "work", duration: "2小時" },
-        { time: "11:00", task: "團隊同步", type: "meeting", duration: "1小時" },
+        { time: "9:00", task: "深度工作", type: "work", duration: "2小時", tag: "正軌" },
+        { time: "11:00", task: "團隊同步", type: "meeting", duration: "1小時", tag: "正軌" },
         { time: "12:00", task: "午餐", type: "break", duration: "1小時" },
-        { time: "13:00", task: "專案檢討", type: "work", duration: "1.5小時" },
+        { time: "13:00", task: "專案檢討", type: "work", duration: "1.5小時", tag: "正軌" },
       ],
       // 1: Overslept
       [
@@ -486,7 +490,7 @@ export const content: Record<"en" | "zh-tw", Content> = {
       cta: "加入等待名單",
     },
     footer: {
-      text: "準備好找回你的時間了嗎？讓我們一起打造最適合你的生活節奏。",
+      text: "讓我們一起打造最適合你的生活節奏。",
       cta: "加入等待名單",
     },
     eaLink: "",
