@@ -106,6 +106,8 @@ export const content: Record<"en" | "zh-tw", Content> = {
     solution: {
       title: "Your life is dynamic. Your schedule should be too",
       subtitle: "When your day falls apart, your plan doesn’t have to",
+      today: "Today",
+      date: "Wed, Jan 3",
       items: [
         {
           title: "Overslept?",
@@ -133,6 +135,41 @@ export const content: Record<"en" | "zh-tw", Content> = {
         },
       ],
     },
+    solutionSchedules: [
+      // 0: Normal
+      [
+        { time: "9:00", task: "Deep Work", type: "work", duration: "2h" },
+        { time: "11:00", task: "Team Sync", type: "meeting", duration: "1h" },
+        { time: "12:00", task: "Lunch", type: "break", duration: "1h" },
+        { time: "13:00", task: "Project Review", type: "work", duration: "1.5h" },
+      ],
+      // 1: Overslept
+      [
+        { time: "10:30", oldTime: "9:00", task: "Quick Sync", type: "meeting", duration: "30m", tag: "Shortened 30m" },
+        { time: "11:00", oldTime: "10:00", task: "Deep Work", type: "work", duration: "1.5h", tag: "Moved +60m" },
+        { time: "12:30", oldTime: "12:00", task: "Quick Lunch", type: "break", duration: "30m", tag: "Shortened 30m" },
+        { time: "13:00", task: "Project Review", type: "work", duration: "1.5h", tag: "Protected" },
+      ],
+      // 2: Anxious
+      [
+        { time: "9:00", task: "Email Triage", type: "admin", duration: "45m", tag: "Lighter Mode" },
+        { time: "9:45", task: "Walk", type: "break", duration: "15m", tag: "Added" },
+        { time: "10:00", oldTime: "9:00", task: "Focus Time", type: "work", duration: "1h", tag: "Moved +60m" },
+        { time: "11:00", oldTime: "10:00", task: "Team Sync", type: "meeting", duration: "1h", tag: "Deferred" },
+      ],
+      // 3: Unexpected
+      [
+        { time: "9:00", task: "Client Emergency", type: "urgent", duration: "1h", tag: "Priority" },
+        { time: "10:00", oldTime: "9:00", task: "Deep Work", type: "work", duration: "1.5h", tag: "Moved +60m" },
+        { time: "11:30", oldTime: "10:30", task: "Team Sync", type: "meeting", duration: "30m", tag: "Shortened 30m" },
+      ],
+      // 4: Heavy Week
+      [
+        { time: "9:00", task: "NO MEETINGS", type: "focus", duration: "3h", tag: "Auto-expanded" },
+        { time: "12:00", task: "Lunch", type: "break", duration: "1h", tag: "Protected" },
+        { time: "13:00", task: "Project Review", type: "work", duration: "1.5h", tag: "Protected" },
+      ],
+    ],
     dynamicScheduling: {
       title: "Dynamic Scheduling — built around your real life",
       subtitle: "Your AI team automatically:",
@@ -307,6 +344,8 @@ export const content: Record<"en" | "zh-tw", Content> = {
     solution: {
       title: "你的生活是動態的，你的行事曆也該如此",
       subtitle: "當你的生活突然變動，你的計畫不需要一起崩塌",
+      today: "今天",
+      date: "1月3日 (週三)",
       items: [
         {
           title: "睡過頭？",
@@ -334,6 +373,41 @@ export const content: Record<"en" | "zh-tw", Content> = {
         },
       ],
     },
+    solutionSchedules: [
+      // 0: Normal
+      [
+        { time: "9:00", task: "深度工作", type: "work", duration: "2小時" },
+        { time: "11:00", task: "團隊同步", type: "meeting", duration: "1小時" },
+        { time: "12:00", task: "午餐", type: "break", duration: "1小時" },
+        { time: "13:00", task: "專案檢討", type: "work", duration: "1.5小時" },
+      ],
+      // 1: Overslept
+      [
+        { time: "10:30", oldTime: "9:00", task: "快速同步", type: "meeting", duration: "30分", tag: "縮短 30分" },
+        { time: "11:00", oldTime: "10:00", task: "深度工作", type: "work", duration: "1.5小時", tag: "延後 +60分" },
+        { time: "12:30", oldTime: "12:00", task: "快速午餐", type: "break", duration: "30分", tag: "縮短 30分" },
+        { time: "13:00", task: "專案檢討", type: "work", duration: "1.5小時", tag: "已保護" },
+      ],
+      // 2: Anxious
+      [
+        { time: "9:00", task: "郵件處理", type: "admin", duration: "45分", tag: "輕量模式" },
+        { time: "9:45", task: "散步", type: "break", duration: "15分", tag: "新增" },
+        { time: "10:00", oldTime: "9:00", task: "專注時間", type: "work", duration: "1小時", tag: "延後 +60分" },
+        { time: "11:00", oldTime: "10:00", task: "團隊同步", type: "meeting", duration: "1小時", tag: "已推遲" },
+      ],
+      // 3: Unexpected
+      [
+        { time: "9:00", task: "客戶緊急狀況", type: "urgent", duration: "1小時", tag: "優先處理" },
+        { time: "10:00", oldTime: "9:00", task: "深度工作", type: "work", duration: "1.5小時", tag: "延後 +60分" },
+        { time: "11:30", oldTime: "10:30", task: "團隊同步", type: "meeting", duration: "30分", tag: "縮短 30分" },
+      ],
+      // 4: Heavy Week
+      [
+        { time: "9:00", task: "無會議時段", type: "focus", duration: "3小時", tag: "自動擴展" },
+        { time: "12:00", task: "午餐", type: "break", duration: "1小時", tag: "已保護" },
+        { time: "13:00", task: "專案檢討", type: "work", duration: "1.5小時", tag: "已保護" },
+      ],
+    ],
     dynamicScheduling: {
       title: "動態排程 ⸺ 以你的真實狀態為核心",
       subtitle: "你的 AI 智囊團會自動：",

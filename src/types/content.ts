@@ -38,6 +38,8 @@ export interface Content {
   solution: {
     title: string;
     subtitle: string;
+    today: string;
+    date: string;
     items: {
       title: string;
       desc: string;
@@ -45,6 +47,14 @@ export interface Content {
       reason: string;
     }[];
   };
+  solutionSchedules: {
+    time: string;
+    oldTime?: string;
+    task: string;
+    type: string;
+    duration: string;
+    tag?: string;
+  }[][];
   dynamicScheduling: {
     title: string;
     subtitle: string;

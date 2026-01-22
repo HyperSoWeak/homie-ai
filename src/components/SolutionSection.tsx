@@ -16,43 +16,8 @@ export default function SolutionSection({ t }: SolutionSectionProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [activeStep, setActiveStep] = useState(1);
 
-  // Mock schedule data for different states
-  // 0: Normal, 1: Overslept, 2: Anxious, 3: Unexpected, 4: Heavy Week
-  const schedules = [
-    // 0: Normal (Back on track)
-    [
-      { time: "9:00", task: "Deep Work", type: "work", duration: "2h" },
-      { time: "11:00", task: "Team Sync", type: "meeting", duration: "1h" },
-      { time: "12:00", task: "Lunch", type: "break", duration: "1h" },
-      { time: "13:00", task: "Project Review", type: "work", duration: "1.5h" },
-    ],
-    // 1: Overslept
-    [
-      { time: "10:30", oldTime: "9:00", task: "Quick Sync", type: "meeting", duration: "30m", tag: "Shortened 30m" },
-      { time: "11:00", oldTime: "10:00", task: "Deep Work", type: "work", duration: "1.5h", tag: "Moved +60m" },
-      { time: "12:30", oldTime: "12:00", task: "Quick Lunch", type: "break", duration: "30m", tag: "Shortened 30m" },
-      { time: "13:00", task: "Project Review", type: "work", duration: "1.5h", tag: "Protected" },
-    ],
-    // 2: Anxious
-    [
-      { time: "9:00", task: "Email Triage", type: "admin", duration: "45m", tag: "Lighter Mode" },
-      { time: "9:45", task: "Walk", type: "break", duration: "15m", tag: "Added" },
-      { time: "10:00", oldTime: "9:00", task: "Focus Time", type: "work", duration: "1h", tag: "Moved +60m" },
-      { time: "11:00", oldTime: "10:00", task: "Team Sync", type: "meeting", duration: "1h", tag: "Deferred" },
-    ],
-    // 3: Unexpected
-    [
-      { time: "9:00", task: "Client Emergency", type: "urgent", duration: "1h", tag: "Priority" },
-      { time: "10:00", oldTime: "9:00", task: "Deep Work", type: "work", duration: "1.5h", tag: "Moved +60m" },
-      { time: "11:30", oldTime: "10:30", task: "Team Sync", type: "meeting", duration: "30m", tag: "Shortened 30m" },
-    ],
-    // 4: Heavy Week
-    [
-      { time: "9:00", task: "NO MEETINGS", type: "focus", duration: "3h", tag: "Auto-expanded" },
-      { time: "12:00", task: "Lunch", type: "break", duration: "1h", tag: "Protected" },
-      { time: "13:00", task: "Project Review", type: "work", duration: "1.5h", tag: "Protected" },
-    ],
-  ];
+  // Use localized schedules from content
+  const schedules = t.solutionSchedules;
 
   // Scroll Logic
   const { scrollYProgress } = useScroll({
@@ -131,13 +96,12 @@ export default function SolutionSection({ t }: SolutionSectionProps) {
                   
                   {/* Phone Content (Light Mode) */}
                   <div className="absolute inset-0 bg-slate-50 p-6 pt-12 md:p-8 md:pt-14 flex flex-col">
-                    <div className="flex justify-between items-center mb-6 md:mb-8">
-                      <div>
-                        <h4 className="font-bold text-lg md:text-xl text-slate-900">Today</h4>
-                        <p className="text-xs md:text-sm text-slate-500">Wed, Jan 3</p>
-                      </div>
-                      <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-slate-200 flex items-center justify-center">
-                        <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-indigo-500 rounded-full" />
+                                      <div className="flex justify-between items-center mb-6 md:mb-8">
+                                        <div>
+                                          <h4 className="font-bold text-lg md:text-xl text-slate-900">{t.solution.today}</h4>
+                                          <p className="text-xs md:text-sm text-slate-500">{t.solution.date}</p>
+                                        </div>
+                                        <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-slate-200 flex items-center justify-center">                        <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-indigo-500 rounded-full" />
                       </div>
                     </div>
                     
