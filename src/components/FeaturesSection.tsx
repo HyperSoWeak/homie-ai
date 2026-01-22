@@ -65,9 +65,11 @@ export default function FeaturesSection({ t }: FeaturesSectionProps) {
             icon={Brain} 
             title={t.features.items[0].title} 
             desc={t.features.items[0].desc} 
-            className="lg:col-span-4 bg-slate-900/60 border-slate-800"
-            iconColor="text-indigo-400"
-            iconBg="bg-indigo-500/10"
+            className="lg:col-span-4 bg-indigo-50 border-indigo-100 shadow-indigo-200/20"
+            titleColor="text-indigo-900"
+            descColor="text-indigo-700/80"
+            iconColor="text-indigo-600"
+            iconBg="bg-white"
             delay={0.1}
           />
 
@@ -76,9 +78,11 @@ export default function FeaturesSection({ t }: FeaturesSectionProps) {
             icon={MessageCircle} 
             title={t.features.items[1].title} 
             desc={t.features.items[1].desc} 
-            className="lg:col-span-2 lg:row-span-2 bg-slate-900/60 border-slate-800"
-            iconColor="text-sky-400"
-            iconBg="bg-sky-500/10"
+            className="lg:col-span-2 lg:row-span-2 bg-sky-50 border-sky-100 shadow-sky-200/20"
+            titleColor="text-sky-900"
+            descColor="text-sky-700/80"
+            iconColor="text-sky-600"
+            iconBg="bg-white"
             delay={0.2}
           />
 
@@ -87,9 +91,11 @@ export default function FeaturesSection({ t }: FeaturesSectionProps) {
             icon={Activity} 
             title={t.features.items[2].title} 
             desc={t.features.items[2].desc} 
-            className="lg:col-span-2 bg-slate-900/60 border-slate-800"
-            iconColor="text-emerald-400"
-            iconBg="bg-emerald-500/10"
+            className="lg:col-span-2 bg-emerald-50 border-emerald-100 shadow-emerald-200/20"
+            titleColor="text-emerald-900"
+            descColor="text-emerald-700/80"
+            iconColor="text-emerald-600"
+            iconBg="bg-white"
             delay={0.3}
           />
 
@@ -98,9 +104,11 @@ export default function FeaturesSection({ t }: FeaturesSectionProps) {
             icon={Layers} 
             title={t.features.items[3].title} 
             desc={t.features.items[3].desc} 
-            className="lg:col-span-2 bg-slate-900/60 border-slate-800"
-            iconColor="text-amber-400"
-            iconBg="bg-amber-500/10"
+            className="lg:col-span-2 bg-amber-50 border-amber-100 shadow-amber-200/20"
+            titleColor="text-amber-900"
+            descColor="text-amber-700/80"
+            iconColor="text-amber-600"
+            iconBg="bg-white"
             delay={0.4}
           />
 
@@ -109,11 +117,12 @@ export default function FeaturesSection({ t }: FeaturesSectionProps) {
             icon={Sparkles} 
             title={t.features.items[4].title} 
             desc={t.features.items[4].desc} 
-            className="lg:col-span-6 bg-gradient-to-r from-blue-900/40 to-cyan-900/40 border-blue-500/30"
-            iconColor="text-cyan-300"
-            iconBg="bg-cyan-500/20"
+            className="lg:col-span-6 bg-rose-50 border-rose-100 shadow-rose-200/20"
+            titleColor="text-rose-900"
+            descColor="text-rose-700/80"
+            iconColor="text-rose-600"
+            iconBg="bg-white"
             delay={0.5}
-            highlight
           />
 
         </div>
@@ -127,19 +136,21 @@ function FeatureCard({
   title, 
   desc, 
   className = "",
-  iconColor = "text-slate-400",
-  iconBg = "bg-slate-800",
+  titleColor = "text-slate-900",
+  descColor = "text-slate-600",
+  iconColor = "text-slate-600",
+  iconBg = "bg-slate-100",
   delay = 0,
-  highlight = false
 }: { 
   icon: any, 
   title: string, 
   desc: string, 
   className?: string,
+  titleColor?: string,
+  descColor?: string,
   iconColor?: string,
   iconBg?: string,
   delay?: number,
-  highlight?: boolean
 }) {
   return (
     <motion.div
@@ -148,28 +159,28 @@ function FeatureCard({
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
       className={`
-        p-8 rounded-[2rem] border backdrop-blur-md relative group overflow-hidden flex flex-col
+        p-8 rounded-[2.5rem] border relative group overflow-hidden flex flex-col shadow-lg
         ${className}
-        hover:border-cyan-500/30 transition-colors duration-500
+        hover:scale-[1.02] hover:shadow-2xl transition-all duration-500
       `}
     >
-      {/* Hover Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-      
       <div className={`
-        w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-500 group-hover:scale-110
+        w-14 h-14 rounded-2xl flex items-center justify-center mb-6 shadow-sm transition-transform duration-500 group-hover:scale-110
         ${iconBg} ${iconColor}
       `}>
         <Icon className="w-7 h-7" />
       </div>
       
-      <h3 className={`text-2xl font-bold mb-4 ${highlight ? 'text-cyan-50' : 'text-white group-hover:text-cyan-100'} transition-colors`}>
+      <h3 className={`text-2xl font-bold mb-4 ${titleColor} transition-colors relative z-10`}>
         {title}
       </h3>
       
-      <p className={`text-base leading-relaxed ${highlight ? 'text-cyan-100/80' : 'text-slate-400'} flex-1`}>
+      <p className={`text-base font-medium leading-relaxed ${descColor} flex-1 relative z-10`}>
         {desc}
       </p>
+      
+      {/* Subtle light pulse on hover */}
+      <div className="absolute -inset-full bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-20deg] group-hover:animate-[shimmer_1.5s_infinite] pointer-events-none" />
     </motion.div>
   );
 }
