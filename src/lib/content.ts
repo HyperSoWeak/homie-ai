@@ -110,18 +110,26 @@ export const content: Record<"en" | "zh-tw", Content> = {
         {
           title: "Overslept?",
           desc: "Morning compresses automatically.",
+          summary: "I've compressed your morning tasks and moved your sync so you can still finish on time.",
+          reason: "Overslept? No stress. Homie optimizes the remaining hours so you don't have to play catch-up all day.",
         },
         {
           title: "Feeling anxious?",
           desc: "Tasks shift to a lighter mode.",
+          summary: "I shifted your high-pressure meetings and added a short mindfulness walk.",
+          reason: "Energy low? Let's prioritize gentle tasks to rebuild your momentum before tackling the big ones.",
         },
         {
           title: "Unexpected client request?",
           desc: "Everything reorders intelligently.",
+          summary: "I reprioritized your afternoon to handle the emergency while shielding your deep work block.",
+          reason: "Sudden request? Homie acts as your firewall, ensuring the chaos doesn't derail your most important goals.",
         },
         {
           title: "Heavy week?",
           desc: "Homie protects your focus time.",
+          summary: "I cleared your secondary tasks and double-locked your focus blocks.",
+          reason: "Overwhelmed? I'm guarding your time so you can actually think and produce high-quality work.",
         },
       ],
     },
@@ -303,18 +311,26 @@ export const content: Record<"en" | "zh-tw", Content> = {
         {
           title: "睡過頭？",
           desc: "早上的行程自動壓縮。",
+          summary: "我壓縮了早上的瑣事並推遲了同步會議，確保你依然能準時完成今天最重要的目標。",
+          reason: "睡過頭了？別擔心。Homie 會自動優化剩餘的時間，讓你不必整天都在趕進度。",
         },
         {
           title: "焦慮？",
           desc: "任務自動切換到較輕鬆的模式。",
+          summary: "我幫你把高壓會議往後挪，並在中間穿插了一個短暫的散心時間。",
+          reason: "能量低落？我們先從輕鬆的任務開始找回節奏，等能量回升再處理大魔王。",
         },
         {
           title: "客戶突然塞會議？",
           desc: "整天的行程智能重排。",
+          summary: "我重新排列了下午的優先順序以處理突發狀況，同時嚴格保護你的深度工作時段。",
+          reason: "計畫趕不上變化？Homie 是你的數位防火牆，不讓突發事件毀掉你一整天的產出。",
         },
         {
           title: "本週太忙？",
           desc: "Homie 自動保護你的專注時段。",
+          summary: "我清理了次要任務，並為你的核心專案鎖定了更長的專注時段。",
+          reason: "行程滿載？我會幫你守住時間，讓你能在安靜的環境下思考，產出高品質成果。",
         },
       ],
     },

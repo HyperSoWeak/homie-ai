@@ -17,6 +17,7 @@ export default function SolutionSection({ t }: SolutionSectionProps) {
   const [activeStep, setActiveStep] = useState(1);
 
   // Mock schedule data for different states
+  // 0: Normal, 1: Overslept, 2: Anxious, 3: Unexpected, 4: Heavy Week
   const schedules = [
     // 0: Normal (Back on track)
     [
@@ -27,29 +28,29 @@ export default function SolutionSection({ t }: SolutionSectionProps) {
     ],
     // 1: Overslept
     [
-      { time: "10:30", task: "Quick Sync", type: "meeting", duration: "30m" },
-      { time: "11:00", task: "Deep Work", type: "work", duration: "1.5h" },
-      { time: "12:30", task: "Quick Lunch", type: "break", duration: "30m" },
-      { time: "13:00", task: "Project Review", type: "work", duration: "1.5h" },
+      { time: "10:30", oldTime: "9:00", task: "Quick Sync", type: "meeting", duration: "30m", tag: "Shortened 30m" },
+      { time: "11:00", oldTime: "10:00", task: "Deep Work", type: "work", duration: "1.5h", tag: "Moved +60m" },
+      { time: "12:30", oldTime: "12:00", task: "Quick Lunch", type: "break", duration: "30m", tag: "Shortened 30m" },
+      { time: "13:00", task: "Project Review", type: "work", duration: "1.5h", tag: "Protected" },
     ],
     // 2: Anxious
     [
-      { time: "9:00", task: "Email Triage", type: "admin", duration: "45m" },
-      { time: "9:45", task: "Walk", type: "break", duration: "15m" },
-      { time: "10:00", task: "Focus Time", type: "work", duration: "1h" },
-      { time: "11:00", task: "Team Sync", type: "meeting", duration: "1h" },
+      { time: "9:00", task: "Email Triage", type: "admin", duration: "45m", tag: "Lighter Mode" },
+      { time: "9:45", task: "Walk", type: "break", duration: "15m", tag: "Added" },
+      { time: "10:00", oldTime: "9:00", task: "Focus Time", type: "work", duration: "1h", tag: "Moved +60m" },
+      { time: "11:00", oldTime: "10:00", task: "Team Sync", type: "meeting", duration: "1h", tag: "Deferred" },
     ],
     // 3: Unexpected
     [
-      { time: "9:00", task: "Client Emergency", type: "urgent", duration: "1h" },
-      { time: "10:00", task: "Deep Work", type: "work", duration: "1.5h" },
-      { time: "11:30", task: "Team Sync", type: "meeting", duration: "30m" },
+      { time: "9:00", task: "Client Emergency", type: "urgent", duration: "1h", tag: "Priority" },
+      { time: "10:00", oldTime: "9:00", task: "Deep Work", type: "work", duration: "1.5h", tag: "Moved +60m" },
+      { time: "11:30", oldTime: "10:30", task: "Team Sync", type: "meeting", duration: "30m", tag: "Shortened 30m" },
     ],
     // 4: Heavy Week
     [
-      { time: "9:00", task: "NO MEETINGS", type: "focus", duration: "3h" },
-      { time: "12:00", task: "Lunch", type: "break", duration: "1h" },
-      { time: "13:00", task: "Project Review", type: "work", duration: "1.5h" },
+      { time: "9:00", task: "NO MEETINGS", type: "focus", duration: "3h", tag: "Auto-expanded" },
+      { time: "12:00", task: "Lunch", type: "break", duration: "1h", tag: "Protected" },
+      { time: "13:00", task: "Project Review", type: "work", duration: "1.5h", tag: "Protected" },
     ],
   ];
 
@@ -80,13 +81,12 @@ export default function SolutionSection({ t }: SolutionSectionProps) {
   const getCurrentText = () => {
     if (activeStep === 0) {
       return {
-        title: t.lang === "zh-tw" ? "回歸正軌" : "Back on track",
-        desc: t.lang === "zh-tw" ? "Homie 恢復您的最佳節奏。" : "Homie restores your optimal rhythm.",
+        summary: t.lang === "zh-tw" ? "一切重回正軌。" : "Everything is back on track.",
+        reason: t.lang === "zh-tw" ? "你的完美節奏已恢復，我隨時待命。" : "Your perfect rhythm is restored. I'm standing by.",
       };
     }
-    // activeStep is 1-based index in items array (0 -> item 0)
     const item = t.solution.items[activeStep - 1];
-    return item ? { title: item.title, desc: item.desc } : { title: "", desc: "" };
+    return item ? { summary: item.summary, reason: item.reason } : { summary: "", reason: "" };
   };
 
   const currentText = getCurrentText();
@@ -122,12 +122,6 @@ export default function SolutionSection({ t }: SolutionSectionProps) {
 
         {/* Unified Scroll-Driven Layout (Mobile & Desktop) */}
         <div className="relative h-[300vh]" ref={scrollContainerRef}>
-           {/* We use mobileContainerRef for both now as layout is unified. 
-               We can keep desktopScrollY hook for larger screens if needed, 
-               but effectively we just need one scroll tracker if the height is same.
-               To be safe, we'll keep the refs logic but apply the layout to both.
-           */}
-           
           <div className="sticky top-0 h-[100dvh] flex flex-col items-center justify-center overflow-hidden pb-20">
             {/* Phone + AI Wrapper - Keeps them anchored together */}
             <div className="relative">
@@ -150,7 +144,7 @@ export default function SolutionSection({ t }: SolutionSectionProps) {
                     <div className="flex-1 space-y-3 md:space-y-4 relative overflow-hidden">
                       <AnimatePresence mode="popLayout">
                         {schedules[activeStep]
-                          ? schedules[activeStep].map((item, i) => (
+                          ? schedules[activeStep].map((item: any, i) => (
                               <motion.div
                                 layout
                                 key={`${activeStep}-${i}`}
@@ -159,23 +153,42 @@ export default function SolutionSection({ t }: SolutionSectionProps) {
                                 exit={{ opacity: 0, x: 20 }}
                                 transition={{ type: "spring", stiffness: 300, damping: 25 }}
                                 className={clsx(
-                                  "p-3 md:p-4 rounded-xl md:rounded-2xl border-l-[4px] md:border-l-[6px] shadow-sm",
-                                  // Light Mode Styles
+                                  "p-3 md:p-4 rounded-xl md:rounded-2xl border-l-[4px] md:border-l-[6px] shadow-sm relative group/task",
                                   item.type === "work" && "bg-white border-indigo-500 shadow-indigo-100",
                                   item.type === "meeting" && "bg-indigo-50 border-indigo-400",
                                   item.type === "break" && "bg-emerald-50 border-emerald-400",
                                   item.type === "admin" && "bg-slate-100 border-slate-400",
                                   item.type === "urgent" && "bg-red-50 border-red-500",
-                                  item.type === "focus" && "bg-slate-800 border-slate-700 text-white" // Keep focus dark for contrast? Or make it light? Let's keep focus distinct.
+                                  item.type === "focus" && "bg-slate-800 border-slate-700 text-white"
                                 )}
                               >
                                 <div className="flex justify-between items-center mb-1">
-                                  <span className={clsx("text-xs md:text-sm font-mono", item.type === "focus" ? "text-slate-400" : "text-slate-500")}>{item.time}</span>
+                                  <div className="flex items-center gap-1.5">
+                                    {item.oldTime && (
+                                      <span className="text-[10px] md:text-xs font-mono text-slate-400/60 line-through">
+                                        {item.oldTime}
+                                      </span>
+                                    )}
+                                    <span className={clsx("text-xs md:text-sm font-mono", item.type === "focus" ? "text-slate-400" : "text-slate-500")}>
+                                      {item.time}
+                                    </span>
+                                  </div>
                                   <span className={clsx("text-xs md:text-sm font-mono", item.type === "focus" ? "text-slate-500" : "text-slate-400")}>
                                     {item.duration}
                                   </span>
                                 </div>
-                                <p className={clsx("font-semibold text-sm md:text-base", item.type === "focus" ? "text-slate-100" : "text-slate-900")}>{item.task}</p>
+                                <p className={clsx("font-semibold text-sm md:text-base", item.type === "focus" ? "text-slate-100" : "text-slate-900")}>
+                                  {item.task}
+                                </p>
+
+                                {item.tag && (
+                                  <div className={clsx(
+                                    "absolute bottom-2 right-2 px-1.5 py-0.5 rounded text-[8px] md:text-[10px] font-bold uppercase tracking-wider",
+                                    item.type === "focus" ? "bg-white/10 text-white" : "bg-indigo-500/10 text-indigo-600"
+                                  )}>
+                                    {item.tag}
+                                  </div>
+                                )}
                               </motion.div>
                             ))
                           : null}
@@ -189,24 +202,20 @@ export default function SolutionSection({ t }: SolutionSectionProps) {
                 </div>
 
                 {/* AI Companion & Speech Bubble - Overlapping Bottom Left */}
-                {/* 
-                    Mobile: Shifted left slightly (-ml-4) and up (-mb-10) to overlap
-                    Desktop: Shifted left more to sit "beside" but overlapping (-left-20)
-                */}
-                <div className="absolute bottom-[-20px] left-[-20px] md:bottom-[40px] md:left-[-140px] lg:left-[-180px] z-30 flex items-end gap-2 pointer-events-none w-[300px] md:w-[400px]">
-                    {/* AI Image */}
-                    <div className="relative shrink-0 w-16 h-16 md:w-24 md:h-24 rounded-full overflow-hidden border-4 border-slate-950 shadow-[0_10px_30px_rgba(0,0,0,0.5)] bg-indigo-100 transition-all duration-500">
+                <div className="absolute bottom-[-30px] left-[-30px] md:bottom-[20px] md:left-[-160px] lg:left-[-200px] z-30 flex items-end gap-[-10px] pointer-events-none w-[300px] md:w-[500px]">
+                    {/* AI Image - Frameless & Larger */}
+                    <div className="relative shrink-0 w-32 h-32 md:w-56 md:h-56 transition-all duration-500 drop-shadow-2xl z-20">
                        <Image 
                          src="/mentor/Zoe.png" 
                          alt="Zoe" 
                          fill 
-                         className="object-cover"
-                         sizes="(max-width: 768px) 64px, 96px"
+                         className="object-contain object-bottom transform scale-110"
+                         sizes="(max-width: 768px) 128px, 224px"
                        />
                     </div>
                     
                     {/* Speech Bubble */}
-                    <div className="bg-white/95 backdrop-blur-md p-3 md:p-5 rounded-2xl md:rounded-3xl rounded-bl-none shadow-[0_20px_50px_rgba(0,0,0,0.2)] border border-slate-200 text-slate-800 text-sm md:text-base shadow-indigo-900/20 flex-1 origin-bottom-left transition-all duration-500 mb-4 md:mb-0">
+                    <div className="bg-white/95 backdrop-blur-md p-4 md:p-6 rounded-2xl md:rounded-3xl rounded-bl-none shadow-[0_20px_50px_rgba(0,0,0,0.2)] border border-slate-200 text-slate-800 text-sm md:text-base shadow-indigo-900/20 flex-1 origin-bottom-left transition-all duration-500 mb-8 md:mb-12 relative z-10 -ml-6 md:-ml-10">
                        <AnimatePresence mode="wait">
                          <motion.div
                             key={activeStep}
@@ -215,8 +224,13 @@ export default function SolutionSection({ t }: SolutionSectionProps) {
                             exit={{ opacity: 0, y: -5 }}
                             transition={{ duration: 0.2 }}
                          >
-                           <p className="font-bold text-indigo-900 mb-0.5 md:mb-1 text-sm md:text-base">{currentText.title}</p>
-                           <p className="font-medium text-slate-600 leading-snug text-xs md:text-sm">{currentText.desc}</p>
+                           <p className="font-bold text-indigo-900 mb-2 text-sm md:text-base leading-tight">
+                             {currentText.summary}
+                           </p>
+                           <div className="h-px w-8 bg-slate-200 mb-2" />
+                           <p className="font-medium text-slate-500 leading-snug text-xs md:text-sm italic">
+                             &quot;{currentText.reason}&quot;
+                           </p>
                          </motion.div>
                        </AnimatePresence>
                     </div>
@@ -224,16 +238,6 @@ export default function SolutionSection({ t }: SolutionSectionProps) {
             </div>
           </div>
         </div>
-        
-        {/* Invisible Triggers Overlay - Drives the scroll interaction for the single unified layout */}
-        {/* We need to make sure this overlay sits on top of the 'h-[300vh]' container logic-wise but doesn't block clicks? 
-            Actually, the sticky container is inside the relative h-[300vh].
-            We just need the scroll to happen. The content inside sticky doesn't scroll.
-            So we don't need explicit trigger divs if we use useScroll mapped to the container progress.
-            The current logic uses `mobileScrollY` (mapped to `mobileContainerRef`) to drive `activeStep`.
-            Since we unified the layout into `mobileContainerRef`, it should work for both.
-        */}
-
       </div>
     </section>
   );

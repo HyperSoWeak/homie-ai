@@ -41,6 +41,8 @@ export interface Content {
     items: {
       title: string;
       desc: string;
+      summary: string;
+      reason: string;
     }[];
   };
   dynamicScheduling: {
