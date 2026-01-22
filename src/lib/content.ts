@@ -69,37 +69,43 @@ export const content: Record<"en" | "zh-tw", Content> = {
           title: "Endless Reorganizing",
           desc: "You spend hours every week reorganizing your day.",
           solutionTitle: "Automated Dynamic Scheduling",
-          solutionDesc: "Save hours of manual adjustments weekly. Keep your schedule always optimized.",
+          solutionDesc:
+            "Save hours of manual adjustments weekly. Keep your schedule always optimized.",
         },
         {
           title: "Fragile Plans",
           desc: "One unexpected task collapses your entire schedule.",
           solutionTitle: "High Resilience",
-          solutionDesc: "Adapt to unexpected changes instantly. Your plan always keeps up with reality.",
+          solutionDesc:
+            "Adapt to unexpected changes instantly. Your plan always keeps up with reality.",
         },
         {
           title: "Static Calendar",
           desc: "Your energy and focus change, but your calendar never does.",
           solutionTitle: "Energy-Based Management",
-          solutionDesc: "Align tasks with your focus and energy levels. Do the right thing at the right time.",
+          solutionDesc:
+            "Align tasks with your focus and energy levels. Do the right thing at the right time.",
         },
         {
           title: "Decision Fatigue",
           desc: "You know your priorities, but fragmented time makes it hard to decide when each task fits best.",
           solutionTitle: "Precision Execution",
-          solutionDesc: "Stop decision fatigue. The system predicts the best starting point so you can focus on output.",
+          solutionDesc:
+            "Stop decision fatigue. The system predicts the best starting point so you can focus on output.",
         },
         {
           title: "Solo Struggle",
           desc: "Working alone means no one helps you sort or reprioritize your tasks.",
           solutionTitle: "Digital Second Brain",
-          solutionDesc: "Like a senior executive assistant, proactively organizing your rhythm and priorities.",
+          solutionDesc:
+            "Like a senior executive assistant, proactively organizing your rhythm and priorities.",
         },
         {
           title: "Fragmented Tools",
           desc: "Your calendars and todos live in separate apps, so you keep switching back and forth just to avoid overlaps or missed tasks.",
           solutionTitle: "All-in-One Integration",
-          solutionDesc: "Seamlessly stitch calendar and todos together. Control every action in one single view.",
+          solutionDesc:
+            "Seamlessly stitch calendar and todos together. Control every action in one single view.",
         },
       ],
     },
@@ -114,26 +120,32 @@ export const content: Record<"en" | "zh-tw", Content> = {
         {
           title: "Overslept?",
           desc: "Morning compresses automatically.",
-          summary: "I've compressed your morning tasks and moved your sync so you can still finish on time.",
-          reason: "Overslept? No stress. Homie optimizes the remaining hours so you don't have to play catch-up all day.",
+          summary:
+            "I've compressed your morning tasks and moved your sync so you can still finish on time.",
+          reason:
+            "Overslept? No stress. Homie optimizes the remaining hours so you don't have to play catch-up all day.",
         },
         {
           title: "Feeling anxious?",
           desc: "Tasks shift to a lighter mode.",
           summary: "I shifted your high-pressure meetings and added a short mindfulness walk.",
-          reason: "Energy low? Let's prioritize gentle tasks to rebuild your momentum before tackling the big ones.",
+          reason:
+            "Energy low? Let's prioritize gentle tasks to rebuild your momentum before tackling the big ones.",
         },
         {
           title: "Unexpected client request?",
           desc: "Everything reorders intelligently.",
-          summary: "I reprioritized your afternoon to handle the emergency while shielding your deep work block.",
-          reason: "Sudden request? Homie acts as your firewall, ensuring the chaos doesn't derail your most important goals.",
+          summary:
+            "I reprioritized your afternoon to handle the emergency while shielding your deep work block.",
+          reason:
+            "Sudden request? Homie acts as your firewall, ensuring the chaos doesn't derail your most important goals.",
         },
         {
           title: "Heavy week?",
           desc: "Homie protects your focus time.",
           summary: "I cleared your secondary tasks and double-locked your focus blocks.",
-          reason: "Overwhelmed? I'm guarding your time so you can actually think and produce high-quality work.",
+          reason:
+            "Overwhelmed? I'm guarding your time so you can actually think and produce high-quality work.",
         },
       ],
     },
@@ -147,23 +159,72 @@ export const content: Record<"en" | "zh-tw", Content> = {
       ],
       // 1: Overslept
       [
-        { time: "10:30", oldTime: "9:00", task: "Quick Sync", type: "meeting", duration: "30m", tag: "Shortened 30m" },
-        { time: "11:00", oldTime: "10:00", task: "Deep Work", type: "work", duration: "1.5h", tag: "Moved +60m" },
-        { time: "12:30", oldTime: "12:00", task: "Quick Lunch", type: "break", duration: "30m", tag: "Shortened 30m" },
+        {
+          time: "10:30",
+          oldTime: "9:00",
+          task: "Quick Sync",
+          type: "meeting",
+          duration: "30m",
+          tag: "Shortened 30m",
+        },
+        {
+          time: "11:00",
+          oldTime: "10:00",
+          task: "Deep Work",
+          type: "work",
+          duration: "1.5h",
+          tag: "Moved +60m",
+        },
+        {
+          time: "12:30",
+          oldTime: "12:00",
+          task: "Quick Lunch",
+          type: "break",
+          duration: "30m",
+          tag: "Shortened 30m",
+        },
         { time: "13:00", task: "Project Review", type: "work", duration: "1.5h", tag: "Protected" },
       ],
       // 2: Anxious
       [
         { time: "9:00", task: "Email Triage", type: "admin", duration: "45m", tag: "Lighter Mode" },
         { time: "9:45", task: "Walk", type: "break", duration: "15m", tag: "Added" },
-        { time: "10:00", oldTime: "9:00", task: "Focus Time", type: "work", duration: "1h", tag: "Moved +60m" },
-        { time: "11:00", oldTime: "10:00", task: "Team Sync", type: "meeting", duration: "1h", tag: "Deferred" },
+        {
+          time: "10:00",
+          oldTime: "9:00",
+          task: "Focus Time",
+          type: "work",
+          duration: "1h",
+          tag: "Moved +60m",
+        },
+        {
+          time: "11:00",
+          oldTime: "10:00",
+          task: "Team Sync",
+          type: "meeting",
+          duration: "1h",
+          tag: "Deferred",
+        },
       ],
       // 3: Unexpected
       [
         { time: "9:00", task: "Client Emergency", type: "urgent", duration: "1h", tag: "Priority" },
-        { time: "10:00", oldTime: "9:00", task: "Deep Work", type: "work", duration: "1.5h", tag: "Moved +60m" },
-        { time: "11:30", oldTime: "10:30", task: "Team Sync", type: "meeting", duration: "30m", tag: "Shortened 30m" },
+        {
+          time: "10:00",
+          oldTime: "9:00",
+          task: "Deep Work",
+          type: "work",
+          duration: "1.5h",
+          tag: "Moved +60m",
+        },
+        {
+          time: "11:30",
+          oldTime: "10:30",
+          task: "Team Sync",
+          type: "meeting",
+          duration: "30m",
+          tag: "Shortened 30m",
+        },
       ],
       // 4: Heavy Week
       [
@@ -284,7 +345,6 @@ export const content: Record<"en" | "zh-tw", Content> = {
           features: ["AI 最佳化", "即時調整", "優先級建議", "每週洞察"],
           cta: "加入等待名單",
           popular: true,
-          
         },
         {
           name: "月訂閱",
@@ -336,9 +396,9 @@ export const content: Record<"en" | "zh-tw", Content> = {
           solutionDesc: "像擁有一位資深特助，主動為你梳理節奏、整理優先順序。",
         },
         {
-                    title: "工具分散",
-                    desc: "你的日曆和待辦事項分散在不同 App 中，為了避免時間衝突或遺漏任務，你只能不斷來回切換。",
-                    solutionTitle: "全方位一站整合",
+          title: "工具分散",
+          desc: "你的日曆和待辦事項分散在不同 App 中，為了避免時間衝突或遺漏任務，你只能不斷來回切換。",
+          solutionTitle: "全方位一站整合",
           solutionDesc: "將日曆與待辦事項完美縫合，在單一視角下掌控所有行動。",
         },
       ],
@@ -387,23 +447,72 @@ export const content: Record<"en" | "zh-tw", Content> = {
       ],
       // 1: Overslept
       [
-        { time: "10:30", oldTime: "9:00", task: "快速同步", type: "meeting", duration: "30分", tag: "縮短 30分" },
-        { time: "11:00", oldTime: "10:00", task: "深度工作", type: "work", duration: "1.5小時", tag: "延後 +60分" },
-        { time: "12:30", oldTime: "12:00", task: "快速午餐", type: "break", duration: "30分", tag: "縮短 30分" },
+        {
+          time: "10:30",
+          oldTime: "9:00",
+          task: "快速同步",
+          type: "meeting",
+          duration: "30分",
+          tag: "縮短 30分",
+        },
+        {
+          time: "11:00",
+          oldTime: "10:00",
+          task: "深度工作",
+          type: "work",
+          duration: "1.5小時",
+          tag: "延後 +60分",
+        },
+        {
+          time: "12:30",
+          oldTime: "12:00",
+          task: "快速午餐",
+          type: "break",
+          duration: "30分",
+          tag: "縮短 30分",
+        },
         { time: "13:00", task: "專案檢討", type: "work", duration: "1.5小時", tag: "已保護" },
       ],
       // 2: Anxious
       [
         { time: "9:00", task: "郵件處理", type: "admin", duration: "45分", tag: "輕量模式" },
         { time: "9:45", task: "散步", type: "break", duration: "15分", tag: "新增" },
-        { time: "10:00", oldTime: "9:00", task: "專注時間", type: "work", duration: "1小時", tag: "延後 +60分" },
-        { time: "11:00", oldTime: "10:00", task: "團隊同步", type: "meeting", duration: "1小時", tag: "已推遲" },
+        {
+          time: "10:00",
+          oldTime: "9:00",
+          task: "專注時間",
+          type: "work",
+          duration: "1小時",
+          tag: "延後 +60分",
+        },
+        {
+          time: "11:00",
+          oldTime: "10:00",
+          task: "團隊同步",
+          type: "meeting",
+          duration: "1小時",
+          tag: "已推遲",
+        },
       ],
       // 3: Unexpected
       [
         { time: "9:00", task: "客戶緊急狀況", type: "urgent", duration: "1小時", tag: "優先處理" },
-        { time: "10:00", oldTime: "9:00", task: "深度工作", type: "work", duration: "1.5小時", tag: "延後 +60分" },
-        { time: "11:30", oldTime: "10:30", task: "團隊同步", type: "meeting", duration: "30分", tag: "縮短 30分" },
+        {
+          time: "10:00",
+          oldTime: "9:00",
+          task: "深度工作",
+          type: "work",
+          duration: "1.5小時",
+          tag: "延後 +60分",
+        },
+        {
+          time: "11:30",
+          oldTime: "10:30",
+          task: "團隊同步",
+          type: "meeting",
+          duration: "30分",
+          tag: "縮短 30分",
+        },
       ],
       // 4: Heavy Week
       [

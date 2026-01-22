@@ -54,8 +54,8 @@ export default function Footer({ t }: FooterProps) {
         <div className="relative inline-block group">
           {/* Button Glow & Particles - Always Visible */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[150%] opacity-70 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-             <div className="absolute inset-0 bg-indigo-500/30 blur-[50px] rounded-full animate-pulse" />
-             <ParticleBackground color="rgba(129, 140, 248, 0.8)" />
+            <div className="absolute inset-0 bg-indigo-500/30 blur-[50px] rounded-full animate-pulse" />
+            <ParticleBackground color="rgba(129, 140, 248, 0.8)" />
           </div>
 
           <motion.button

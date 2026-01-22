@@ -112,7 +112,7 @@ function CompanionCard({ companion, index }: { companion: Companion; index: numb
             src={`/mentor/${companion.name}.png`}
             alt={companion.name}
             fill
-            className="object-cover object-top opacity-90 grayscale-[20%] group-hover:grayscale-0 transition-all duration-500 relative z-10"
+            className="object-cover object-top opacity-90 grayscale-[20%] group-hover:grayscale-0 transition-all duration-500 relative z-10 translate-y-4"
             sizes="(max-width: 1200px) 20vw"
           />
         </div>
@@ -170,7 +170,7 @@ function MobileCompanionCard({ companion }: { companion: Companion }) {
           src={`/mentor/${companion.name}.png`}
           alt={companion.name}
           fill
-          className="object-cover object-top relative z-10"
+          className="object-cover object-top relative z-10 translate-y-4"
           sizes="(max-width: 768px) 85vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent z-20" />
@@ -200,5 +200,3 @@ function MobileCompanionCard({ companion }: { companion: Companion }) {
     </motion.div>
   );
 }
-
-

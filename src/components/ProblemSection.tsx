@@ -55,7 +55,7 @@ export default function ProblemSection({ t }: ProblemSectionProps) {
             {t.problem.title}
           </h2>
         </motion.div>
-        
+
         {/* Desktop: Hover Grid */}
         <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {t.problem.items.map((item, index) => (
@@ -66,7 +66,7 @@ export default function ProblemSection({ t }: ProblemSectionProps) {
         {/* Mobile View: Tap to Flip */}
         <div className="md:hidden flex flex-col gap-4">
           {t.problem.items.map((item, index) => (
-            <MobileCard key={index} index={index} item={item} />
+            <MobileCard key={index} index={index} item={item} lang={t.lang} />
           ))}
         </div>
       </div>
@@ -74,13 +74,7 @@ export default function ProblemSection({ t }: ProblemSectionProps) {
   );
 }
 
-function SpotlightCard({
-  index,
-  item,
-}: {
-  index: number;
-  item: Content["problem"]["items"][0];
-}) {
+function SpotlightCard({ index, item }: { index: number; item: Content["problem"]["items"][0] }) {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -114,7 +108,7 @@ function SpotlightCard({
             `,
         }}
       />
-      
+
       {/* Green Gradient (Hover) */}
       <motion.div
         className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition duration-500 group-hover:opacity-100"
@@ -135,9 +129,7 @@ function SpotlightCard({
           <Icon className="w-6 h-6 text-red-400/60 transition-colors" />
         </div>
 
-        <h3 className="text-xl font-bold text-white mb-3 transition-colors">
-          {item.title}
-        </h3>
+        <h3 className="text-xl font-bold text-white mb-3 transition-colors">{item.title}</h3>
 
         <p className="text-slate-400 leading-relaxed">{item.desc}</p>
       </div>
@@ -145,12 +137,10 @@ function SpotlightCard({
       {/* Solution Content (Hidden by default, fades in on hover) */}
       <div className="absolute inset-0 p-8 flex flex-col h-full z-10 transition-all duration-500 ease-in-out opacity-0 translate-y-[10px] group-hover:opacity-100 group-hover:translate-y-0">
         <div className="w-12 h-12 rounded-xl bg-emerald-900/20 border border-emerald-800 flex items-center justify-center mb-6">
-           <Sparkles className="w-6 h-6 text-emerald-400" />
+          <Sparkles className="w-6 h-6 text-emerald-400" />
         </div>
 
-        <h3 className="text-xl font-bold text-emerald-400 mb-3">
-          {item.solutionTitle}
-        </h3>
+        <h3 className="text-xl font-bold text-emerald-400 mb-3">{item.solutionTitle}</h3>
 
         <p className="text-slate-300 leading-relaxed">{item.solutionDesc}</p>
       </div>
@@ -161,9 +151,11 @@ function SpotlightCard({
 function MobileCard({
   index,
   item,
+  lang,
 }: {
   index: number;
   item: Content["problem"]["items"][0];
+  lang: string;
 }) {
   const [isFlipped, setIsFlipped] = useState(false);
   const Icon = icons[index % icons.length];
@@ -178,44 +170,66 @@ function MobileCard({
       onClick={() => setIsFlipped(!isFlipped)}
       className={clsx(
         "relative rounded-2xl p-6 border transition-colors duration-500 cursor-pointer overflow-hidden",
-        isFlipped 
-          ? "bg-slate-900 border-emerald-500/50 shadow-[0_0_15px_-3px_rgba(16,185,129,0.2)]" 
+        isFlipped
+          ? "bg-slate-900 border-emerald-500/50 shadow-[0_0_15px_-3px_rgba(16,185,129,0.2)]"
           : "bg-slate-900 border-red-900/20"
       )}
     >
       <motion.div layout className="relative z-10 flex items-start gap-4">
-        <motion.div 
-            layout
-            className={clsx(
+        <motion.div
+          layout
+          className={clsx(
             "shrink-0 w-10 h-10 rounded-lg flex items-center justify-center mt-1 transition-colors duration-500",
-             isFlipped ? "bg-emerald-900/30 text-emerald-400" : "bg-red-950/20 border border-red-900/30 text-red-400/60"
-          )}>
-            {isFlipped ? <Sparkles className="w-5 h-5" /> : <Icon className="w-5 h-5" />}
+            isFlipped
+              ? "bg-emerald-900/30 text-emerald-400"
+              : "bg-red-950/20 border border-red-900/30 text-red-400/60"
+          )}
+        >
+          {isFlipped ? <Sparkles className="w-5 h-5" /> : <Icon className="w-5 h-5" />}
         </motion.div>
 
-        <div className="flex-1">
-             <motion.div 
-                layout
-                key={isFlipped ? "solution" : "problem"}
-                initial={{ opacity: 0, y: 5 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-             >
-                <h3 className={clsx("text-lg font-bold mb-2", isFlipped ? "text-emerald-400" : "text-white")}>
-                    {isFlipped ? item.solutionTitle : item.title}
-                </h3>
-                <p className={clsx("text-sm leading-relaxed", isFlipped ? "text-slate-300" : "text-slate-400")}>
-                    {isFlipped ? item.solutionDesc : item.desc}
-                </p>
-             </motion.div>
+        <div className="flex-1 flex flex-col justify-between min-h-[100px]">
+          <motion.div
+            layout
+            key={isFlipped ? "solution" : "problem"}
+            initial={{ opacity: 0, y: 5 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <h3
+              className={clsx(
+                "text-lg font-bold mb-2",
+                isFlipped ? "text-emerald-400" : "text-white"
+              )}
+            >
+              {isFlipped ? item.solutionTitle : item.title}
+            </h3>
+            <p
+              className={clsx(
+                "text-sm leading-relaxed",
+                isFlipped ? "text-slate-300" : "text-slate-400"
+              )}
+            >
+              {isFlipped ? item.solutionDesc : item.desc}
+            </p>
+          </motion.div>
+
+          {/* Tap hint Badge in flow */}
+          <motion.div layout className="mt-6 flex justify-end">
+            <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-500 bg-slate-800/50 px-2.5 py-1.5 rounded-lg border border-slate-700/50 shadow-sm">
+              <RotateCw className="w-3 h-3" />
+              <span>
+                {lang === "zh-tw"
+                  ? isFlipped
+                    ? "點擊看問題"
+                    : "點擊看解法"
+                  : isFlipped
+                    ? "Tap to see problem"
+                    : "Tap to see solution"}
+              </span>
+            </div>
+          </motion.div>
         </div>
-      </motion.div>
-        
-      {/* Tap hint */}
-      <motion.div layout className="mt-4 flex justify-end opacity-30">
-         <span className="text-[10px] uppercase tracking-wider text-slate-500 font-medium">
-            {isFlipped ? "Tap to see problem" : "Tap to see solution"}
-         </span>
       </motion.div>
     </motion.div>
   );
