@@ -141,7 +141,7 @@ export default function HeroSection({ t }: HeroSectionProps) {
                 <button
                   onClick={handleJoinWaitlist}
                   disabled={status === "loading" || !email}
-                  className="bg-white text-slate-900 px-6 sm:px-8 py-3 rounded-[1.5rem] sm:rounded-full font-semibold transition-all hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 whitespace-nowrap min-w-[120px] sm:min-w-[140px] h-[48px] sm:h-auto text-sm sm:text-base"
+                  className="bg-white text-slate-900 px-6 sm:px-8 py-3 rounded-[1.5rem] sm:rounded-full font-semibold transition-all hover:bg-slate-50 hover:shadow-[0_0_20px_rgba(255,255,255,0.5)] hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 whitespace-nowrap min-w-[120px] sm:min-w-[140px] h-[48px] sm:h-auto text-sm sm:text-base"
                 >
                   {status === "loading" ? (
                     <Loader2 className="w-4 h-4 sm:w-5 h-5 animate-spin" />
