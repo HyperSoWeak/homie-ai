@@ -39,7 +39,7 @@ export function ParticleBackground({ color }: { color: string }) {
     };
 
     const initParticles = () => {
-      const particleCount = 20;
+      const particleCount = 40;
       for (let i = 0; i < particleCount; i++) {
         particles.push({
           ...createParticle(),
