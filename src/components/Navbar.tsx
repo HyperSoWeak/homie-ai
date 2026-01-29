@@ -54,7 +54,7 @@ export default function Navbar({ lang, setLang, t }: NavbarProps) {
               <div className="relative">
                 <Image
                   src={logoSrc}
-                  alt="Homie Logo"
+                  alt="Hoobi Logo"
                   width={100}
                   height={28}
                   className="w-auto h-7 opacity-90 group-hover:opacity-100 transition-opacity"
@@ -161,7 +161,7 @@ export default function Navbar({ lang, setLang, t }: NavbarProps) {
               <div className="pt-8 opacity-50">
                 <Image
                   src={logoSrc}
-                  alt="Homie Logo"
+                  alt="Hoobi Logo"
                   width={80}
                   height={24}
                   className="w-auto h-6 grayscale"

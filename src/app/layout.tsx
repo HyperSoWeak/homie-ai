@@ -13,21 +13,21 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteUrl = process.env.SITE_URL || "https://homie-calendar.vercel.app";
-const siteName = "Homie";
+const siteUrl = process.env.SITE_URL || "https://hoobi-calendar.vercel.app";
+const siteName = "Hoobi";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Homie｜AI-Powered Calendar That Adapts to You",
-    template: "%s｜Homie",
+    default: "Hoobi｜AI-Powered Calendar That Adapts to You",
+    template: "%s｜Hoobi",
   },
   description:
-    "Homie is an AI-powered calendar that adjusts itself based on your energy, mood, workload, and unexpected changes. Stop forcing yourself to fit your calendar.",
-  applicationName: "Homie",
-  authors: [{ name: "Homie Team" }],
-  creator: "Homie",
-  publisher: "Homie",
+    "Hoobi is an AI-powered calendar that adjusts itself based on your energy, mood, workload, and unexpected changes. Stop forcing yourself to fit your calendar.",
+  applicationName: "Hoobi",
+  authors: [{ name: "Hoobi Team" }],
+  creator: "Hoobi",
+  publisher: "Hoobi",
   keywords: [
     "AI calendar",
     "dynamic scheduling",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     "weekly insights",
   ],
   openGraph: {
-    title: "Homie｜Your AI Schedule Team — Built to Adapt to You",
+    title: "Hoobi｜Your AI Schedule Team — Built to Adapt to You",
     description:
       "The first AI-powered calendar that rebuilds your day when plans change. Real-time adjustments, smart prioritization, and unified calendars.",
     url: siteUrl,
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Homie｜Your AI Schedule Team",
+    title: "Hoobi｜Your AI Schedule Team",
     description:
       "An AI-powered calendar that adapts to your energy, mood, workload, and surprises. Your day, rebuilt in real time.",
   },

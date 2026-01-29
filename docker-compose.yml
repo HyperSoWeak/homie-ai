@@ -3,8 +3,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: homie-landing-page
-    container_name: homie-landing-page
+    image: hoobi-landing-page
+    container_name: hoobi-landing-page
     ports:
       - "3000:3000"
     restart: always

@@ -57,7 +57,7 @@ export async function POST(request: Request) {
         body: JSON.stringify({
           embeds: [
             {
-              title: "✨ New Homie Waitlist Signup 🎉",
+              title: "✨ New Hoobi Waitlist Signup 🎉",
               color: 0x5865f2,
               fields: [
                 {

@@ -38,7 +38,7 @@ export default function Footer({ t }: FooterProps) {
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900/50 border border-slate-800 mb-8 backdrop-blur-sm"
         >
           <Sparkles className="w-4 h-4 text-indigo-400" />
-          <span className="text-sm text-slate-300 font-medium">Homie AI</span>
+          <span className="text-sm text-slate-300 font-medium">Hoobi AI</span>
         </motion.div>
 
         <motion.h2
@@ -74,7 +74,7 @@ export default function Footer({ t }: FooterProps) {
         </div>
 
         <div className="mt-32 pt-8 border-t border-slate-800/50 text-slate-500 text-sm">
-          <p>© {new Date().getFullYear()} Homie AI. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Hoobi AI. All rights reserved.</p>
         </div>
       </div>
     </footer>

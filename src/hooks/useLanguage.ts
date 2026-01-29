@@ -11,7 +11,7 @@ export function useLanguage() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const savedLang = localStorage.getItem("homie-lang") as Lang;
+    const savedLang = localStorage.getItem("hoobi-lang") as Lang;
     if (savedLang && (savedLang === "en" || savedLang === "zh-tw")) {
       setLang(savedLang);
     }
@@ -21,7 +21,7 @@ export function useLanguage() {
 
   const handleSetLang = (newLang: Lang) => {
     setLang(newLang);
-    localStorage.setItem("homie-lang", newLang);
+    localStorage.setItem("hoobi-lang", newLang);
   };
 
   return { lang, setLang: handleSetLang, t: content[lang], mounted };

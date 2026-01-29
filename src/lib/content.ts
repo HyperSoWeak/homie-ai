@@ -58,7 +58,7 @@ export const content: Record<"en" | "zh-tw", Content> = {
     hero: {
       title: "Your AI Schedule Team — Built to Adapt to You",
       subtitle:
-        "Meet Homie, the first AI-powered calendar that adjusts itself based on your energy, mood, workload, and unexpected changes",
+        "Meet Hoobi, the first AI-powered calendar that adjusts itself based on your energy, mood, workload, and unexpected changes",
       tagline: "Stop forcing yourself to fit your calendar. Let your calendar finally fit you.",
       cta: "Join Waiting List",
     },
@@ -115,7 +115,7 @@ export const content: Record<"en" | "zh-tw", Content> = {
       today: "Today",
       date: "Wed, Jan 3",
       labelOriginal: "Original Plan",
-      labelAdjusted: "Homie Adjusted",
+      labelAdjusted: "Hoobi Adjusted",
       items: [
         {
           title: "Overslept?",
@@ -123,7 +123,7 @@ export const content: Record<"en" | "zh-tw", Content> = {
           summary:
             "I've compressed your morning tasks and moved your sync so you can still finish on time.",
           reason:
-            "Overslept? No stress. Homie optimizes the remaining hours so you don't have to play catch-up all day.",
+            "Overslept? No stress. Hoobi optimizes the remaining hours so you don't have to play catch-up all day.",
         },
         {
           title: "Feeling anxious?",
@@ -138,11 +138,11 @@ export const content: Record<"en" | "zh-tw", Content> = {
           summary:
             "I reprioritized your afternoon to handle the emergency while shielding your deep work block.",
           reason:
-            "Sudden request? Homie acts as your firewall, ensuring the chaos doesn't derail your most important goals.",
+            "Sudden request? Hoobi acts as your firewall, ensuring the chaos doesn't derail your most important goals.",
         },
         {
           title: "Heavy week?",
-          desc: "Homie protects your focus time.",
+          desc: "Hoobi protects your focus time.",
           summary: "I cleared your secondary tasks and double-locked your focus blocks.",
           reason:
             "Overwhelmed? I'm guarding your time so you can actually think and produce high-quality work.",
@@ -254,7 +254,7 @@ export const content: Record<"en" | "zh-tw", Content> = {
         },
         {
           title: "Natural conversation",
-          desc: "Talk to Homie to adjust your plans. No manual dragging—just speak, and your schedule rebuilds instantly.",
+          desc: "Talk to Hoobi to adjust your plans. No manual dragging—just speak, and your schedule rebuilds instantly.",
         },
         {
           title: "Weekly behavior insights",
@@ -307,7 +307,7 @@ export const content: Record<"en" | "zh-tw", Content> = {
     },
     midSectionCta: {
       title: "Ready to reclaim your time?",
-      subtitle: "Join the waitlist and be the first to experience Homie.",
+      subtitle: "Join the waitlist and be the first to experience Hoobi.",
       cta: "Join Waiting List",
     },
     footer: {
@@ -358,7 +358,7 @@ export const content: Record<"en" | "zh-tw", Content> = {
     },
     hero: {
       title: "你的 AI 行程智囊團 ⸺ 專為「你」而生",
-      subtitle: "認識 Homie：第一款會依照你的能量、情緒、工作量與突發事件自動調整的 AI 行事曆",
+      subtitle: "認識 Hoobi：第一款會依照你的能量、情緒、工作量與突發事件自動調整的 AI 行事曆",
       tagline: "你終於不必再遷就行事曆，而是讓行事曆開始遷就你的生活。",
       cta: "加入等待名單",
     },
@@ -409,13 +409,13 @@ export const content: Record<"en" | "zh-tw", Content> = {
       today: "今天",
       date: "1月3日 (週三)",
       labelOriginal: "原始計畫",
-      labelAdjusted: "Homie 調整後",
+      labelAdjusted: "Hoobi 調整後",
       items: [
         {
           title: "睡過頭？",
           desc: "早上的行程自動壓縮。",
           summary: "我壓縮了早上的瑣事並推遲了同步會議，確保你依然能準時完成今天最重要的目標。",
-          reason: "睡過頭了？別擔心。Homie 會自動優化剩餘的時間，讓你不必整天都在趕進度。",
+          reason: "睡過頭了？別擔心。Hoobi 會自動優化剩餘的時間，讓你不必整天都在趕進度。",
         },
         {
           title: "焦慮？",
@@ -427,11 +427,11 @@ export const content: Record<"en" | "zh-tw", Content> = {
           title: "客戶突然塞會議？",
           desc: "整天的行程智能重排。",
           summary: "我重新排列了下午的優先順序以處理突發狀況，同時嚴格保護你的深度工作時段。",
-          reason: "計畫趕不上變化？Homie 是你的數位防火牆，不讓突發事件毀掉你一整天的產出。",
+          reason: "計畫趕不上變化？Hoobi 是你的數位防火牆，不讓突發事件毀掉你一整天的產出。",
         },
         {
           title: "本週太忙？",
-          desc: "Homie 自動保護你的專注時段。",
+          desc: "Hoobi 自動保護你的專注時段。",
           summary: "我清理了次要任務，並為你的核心專案鎖定了更長的專注時段。",
           reason: "行程滿載？我會幫你守住時間，讓你能在安靜的環境下思考，產出高品質成果。",
         },
@@ -529,7 +529,7 @@ export const content: Record<"en" | "zh-tw", Content> = {
         "突發狀況發生時，重建你一整天",
         "依你的專注度推薦「下一步最聰明的選擇」",
         "預測你將過載並提前重新分配",
-        "減少你的大腦負擔，把「要怎麼排」交給 Homie",
+        "減少你的大腦負擔，把「要怎麼排」交給 Hoobi",
       ],
       footer: "這不是工具，而是 五位 24/7 陪著你的 AI 助理。",
     },
@@ -542,7 +542,7 @@ export const content: Record<"en" | "zh-tw", Content> = {
         },
         {
           title: "像聊天一樣重新安排",
-          desc: "用語音或文字更新計畫，Homie 自動重建行程，徹底告別手動調整。",
+          desc: "用語音或文字更新計畫，Hoobi 自動重建行程，徹底告別手動調整。",
         },
         {
           title: "每週行為洞察 & 生活節奏建議",
@@ -595,7 +595,7 @@ export const content: Record<"en" | "zh-tw", Content> = {
     },
     midSectionCta: {
       title: "準備好找回你的時間了嗎？",
-      subtitle: "加入等待名單，搶先體驗 Homie。",
+      subtitle: "加入等待名單，搶先體驗 Hoobi。",
       cta: "加入等待名單",
     },
     footer: {
