@@ -121,8 +121,8 @@ export default function HeroSection({ t }: HeroSectionProps) {
             </div>
           ) : (
             <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-[2rem] sm:rounded-full blur opacity-15 group-hover:opacity-25 transition duration-500" />
-              <div className="relative flex flex-col sm:flex-row items-stretch sm:items-center bg-slate-900 p-1.5 rounded-[2rem] sm:rounded-full border border-slate-800 shadow-xl gap-1.5 sm:gap-0 min-h-[56px] sm:min-h-[64px]">
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-white to-purple-500 rounded-[2rem] sm:rounded-full blur-xl opacity-25 group-hover:opacity-40 transition duration-500" />
+              <div className="relative flex flex-col sm:flex-row items-stretch sm:items-center bg-slate-900/90 backdrop-blur-md p-1.5 rounded-[2rem] sm:rounded-full border border-slate-700/50 shadow-2xl gap-1.5 sm:gap-0 min-h-[56px] sm:min-h-[64px]">
                 <div className="flex items-center flex-1 px-4 py-1 sm:py-0">
                   <Mail className="w-4 h-4 sm:w-5 h-5 text-slate-400 shrink-0" />
                   <input
@@ -141,7 +141,7 @@ export default function HeroSection({ t }: HeroSectionProps) {
                 <button
                   onClick={handleJoinWaitlist}
                   disabled={status === "loading" || !email}
-                  className="bg-white text-slate-900 px-6 sm:px-8 py-3 rounded-[1.5rem] sm:rounded-full font-semibold transition-all hover:bg-slate-50 hover:shadow-[0_0_20px_rgba(255,255,255,0.5)] hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 whitespace-nowrap min-w-[120px] sm:min-w-[140px] h-[48px] sm:h-auto text-sm sm:text-base"
+                  className="bg-white text-slate-900 px-6 sm:px-8 py-3 rounded-[1.5rem] sm:rounded-full font-bold transition-all shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:bg-white hover:shadow-[0_0_30px_rgba(255,255,255,0.6)] hover:scale-[1.05] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 whitespace-nowrap min-w-[120px] sm:min-w-[140px] h-[48px] sm:h-auto text-sm sm:text-base"
                 >
                   {status === "loading" ? (
                     <Loader2 className="w-4 h-4 sm:w-5 h-5 animate-spin" />
