@@ -58,12 +58,12 @@ export const content: Record<"en" | "zh-tw", Content> = {
     hero: {
       title: "Your AI Schedule Team — Built to Adapt to You",
       subtitle:
-        "Meet Hoobi, the first AI-powered calendar that adjusts itself based on your energy, mood, workload, and unexpected changes",
-      tagline: "Stop forcing yourself to fit your calendar. Let your calendar finally fit you.",
+        "Meet Hoobi: your AI partner that automatically adjusts your schedule every day based on your energy, mood, workload, and unexpected changes",
+      tagline: "You no longer have to adapt to your calendar—let Hoobi make your calendar finally adapt to your life.",
       cta: "Join Waiting List",
     },
     problem: {
-      title: "You don’t need more productivity tools. You need a system that understands you",
+      title: "You don't need more productivity tools. You need a partner that understands you",
       items: [
         {
           title: "Endless Reorganizing",
@@ -249,8 +249,12 @@ export const content: Record<"en" | "zh-tw", Content> = {
       title: "KEY FEATURES",
       items: [
         {
-          title: "AI schedule think-tank",
-          desc: "Three personalized schedule options tailored to your lifestyle. Pick the pace that fits your day.",
+          title: "Dynamic schedule adjustment",
+          desc: "AI-driven task sorting based on urgency and energy. Know exactly what to do next, even when plans change.",
+        },
+        {
+          title: "Smart scheduling",
+          desc: "Three personalized schedule options tailored to your lifestyle. Pick the pace that fits your month.",
         },
         {
           title: "Natural conversation",
@@ -263,10 +267,6 @@ export const content: Record<"en" | "zh-tw", Content> = {
         {
           title: "Unified calendars",
           desc: "Sync all your work and personal calendars into one seamless timeline. No more app-switching or conflicts.",
-        },
-        {
-          title: "Smart prioritization",
-          desc: "AI-driven task sorting based on urgency and energy. Know exactly what to do next, even when plans change.",
         },
       ],
     },
