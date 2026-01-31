@@ -90,11 +90,9 @@ export default function HeroSection({ t }: HeroSectionProps) {
         />
       </div>
 
-      <motion.div
-        style={{ opacity, scale }}
-        className="relative z-10 max-w-4xl mx-auto px-6 text-center space-y-8 sm:space-y-12"
-      >
+      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center space-y-8 sm:space-y-12">
         <motion.div
+          style={{ opacity, scale }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -165,6 +163,7 @@ export default function HeroSection({ t }: HeroSectionProps) {
         </motion.div>
 
         <motion.p
+          style={{ opacity, scale }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
@@ -172,7 +171,7 @@ export default function HeroSection({ t }: HeroSectionProps) {
         >
           {t.hero.tagline}
         </motion.p>
-      </motion.div>
+      </div>
 
       {/* Scroll Indicator */}
       <motion.div
