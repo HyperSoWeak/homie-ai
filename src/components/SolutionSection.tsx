@@ -59,6 +59,9 @@ export default function SolutionSection({ t }: SolutionSectionProps) {
       return;
     }
 
+    // Reset to "Original" state immediately when entering a new step
+    setShowComparison(false);
+
     const interval = setInterval(() => {
       setShowComparison((prev) => !prev);
     }, 3000);
